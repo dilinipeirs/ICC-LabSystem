@@ -40,6 +40,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnViewMixDesigns.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnViewMixDesigns.setText("View Mix Designs");
         btnViewMixDesigns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +69,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         cmdUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "User" }));
 
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogin.setText("Log In");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
