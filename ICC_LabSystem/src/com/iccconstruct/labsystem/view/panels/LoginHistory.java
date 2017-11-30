@@ -28,9 +28,9 @@ public class LoginHistory extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLoginHis = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLoginHis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -38,7 +38,7 @@ public class LoginHistory extends javax.swing.JPanel {
                 "Login Entry", "Username", "Name", "Log  In Time", "Log Out Time"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblLoginHis);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,6 +61,6 @@ public class LoginHistory extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblLoginHis;
     // End of variables declaration//GEN-END:variables
 }
