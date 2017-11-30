@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  *
  * @author Dilini Peiris
  */
-public class FormDTO {
+public class FormDTO extends SuperDTO{
     private int formID;
     private UserDTO u;
     private LocalDateTime createDateTime;

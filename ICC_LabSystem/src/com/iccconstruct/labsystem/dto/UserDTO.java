@@ -9,7 +9,7 @@ package com.iccconstruct.labsystem.dto;
  *
  * @author Dilini Peiris
  */
-public class UserDTO {
+public class UserDTO extends SuperDTO{
     private int userID;
     private String title;
     private String epf;

@@ -9,7 +9,7 @@ package com.iccconstruct.labsystem.dto;
  *
  * @author Dilini Peiris
  */
-public class ConcreteWorkDTO {
+public class ConcreteWorkDTO extends SuperDTO{
     private String concreteGrade;
     private Double cement;
     private Double water;
