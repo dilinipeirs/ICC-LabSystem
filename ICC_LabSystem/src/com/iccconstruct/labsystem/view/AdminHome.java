@@ -5,6 +5,10 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.view.panels.LoginHistory;
+import com.iccconstruct.labsystem.view.panels.MixDesignInfo;
+import com.iccconstruct.labsystem.view.panels.SystemUsers;
+
 /**
  *
  * @author Dilini Peiris
@@ -27,7 +31,7 @@ public class AdminHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlContainer = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -39,14 +43,14 @@ public class AdminHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
+        pnlContainer.setLayout(pnlContainerLayout);
+        pnlContainerLayout.setHorizontalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlContainerLayout.setVerticalGroup(
+            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 560, Short.MAX_VALUE)
         );
 
@@ -147,7 +151,7 @@ public class AdminHome extends javax.swing.JFrame {
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -159,7 +163,7 @@ public class AdminHome extends javax.swing.JFrame {
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -170,15 +174,15 @@ public class AdminHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMixDesignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMixDesignsActionPerformed
-        // TODO add your handling code here:
+        navigate(0);
     }//GEN-LAST:event_btnMixDesignsActionPerformed
 
     private void btnViewUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUsersActionPerformed
-        // TODO add your handling code here:
+        navigate(1);
     }//GEN-LAST:event_btnViewUsersActionPerformed
 
     private void btnLoginHisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginHisActionPerformed
-        // TODO add your handling code here:
+        navigate(2);
     }//GEN-LAST:event_btnLoginHisActionPerformed
 
     private void btnDBbackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDBbackupActionPerformed
@@ -186,11 +190,11 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDBbackupActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        new UserProfile().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnCreateMixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMixActionPerformed
-        // TODO add your handling code here:
+        new MixDesignForm().setVisible(true);
     }//GEN-LAST:event_btnCreateMixActionPerformed
 
     /**
@@ -236,7 +240,23 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JButton btnViewUsers;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel pnlContainer;
     // End of variables declaration//GEN-END:variables
+
+    private void navigate(int i) {
+        pnlContainer.removeAll();
+
+        switch (i) {
+            case 0:
+                pnlContainer.add(new MixDesignInfo());
+            case 1:
+                pnlContainer.add(new SystemUsers());
+            case 2:
+                pnlContainer.add(new LoginHistory());
+        }
+
+        pnlContainer.updateUI();
+
+    }
 }
