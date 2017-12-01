@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  *
  * @author Dilini Peiris
  */
-public class LoginHistoryDTO extends SuperDTO{
+public class LoginHistoryDTO extends SuperDTO {
     private int logID;
     private UserDTO dTO;
     private LocalDateTime logIN;

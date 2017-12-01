@@ -6,6 +6,8 @@
 package com.iccconstruct.labsystem.controller.custom.impl;
 
 import com.iccconstruct.labsystem.controller.custom.UserController;
+import com.iccconstruct.labsystem.dao.DAOFactory;
+import com.iccconstruct.labsystem.dao.custom.UserDAO;
 import com.iccconstruct.labsystem.dto.UserDTO;
 import java.util.ArrayList;
 
@@ -15,6 +17,12 @@ import java.util.ArrayList;
  */
 public class UserControllerImpl implements UserController{
 
+    UserDAO userDAO;
+    public UserControllerImpl() {
+        userDAO = (UserDAO) DAOFactory.getInstance().getDAO(DAOFactory.ControllerTypes.USER);
+    }
+  
+    
     @Override
     public ArrayList<UserDTO> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -52,7 +60,7 @@ public class UserControllerImpl implements UserController{
 
     @Override
     public boolean isExist(UserDTO dto) throws Exception {
-        return false;
+        return userDAO.isExist(dto);
     }
     
 }

@@ -5,10 +5,12 @@
  */
 package com.iccconstruct.labsystem.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dilini Peiris
  */
-public class SuperDTO {
+public class SuperDTO implements Serializable{
     
 }

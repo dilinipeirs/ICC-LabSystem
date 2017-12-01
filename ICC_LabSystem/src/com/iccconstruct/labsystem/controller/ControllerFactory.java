@@ -34,7 +34,7 @@ public class ControllerFactory {
         return controllerFactory;
     }
 
-    public SuperController getControlelr(ControllerTypes type) {
+    public SuperController getController(ControllerTypes type) {
         switch (type) {
             case USER:
                 return new UserControllerImpl();

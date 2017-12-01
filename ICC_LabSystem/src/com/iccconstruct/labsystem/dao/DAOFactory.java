@@ -33,7 +33,7 @@ public class DAOFactory {
         return controllerFactory;
     }
 
-    public SuperDAO getControlelr(ControllerTypes type) {
+    public SuperDAO getDAO(ControllerTypes type) {
         switch (type) {
             case USER:
                 return new UserDAOImpl();

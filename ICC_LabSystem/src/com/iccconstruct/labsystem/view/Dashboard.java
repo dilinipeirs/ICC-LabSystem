@@ -13,6 +13,7 @@ import com.iccconstruct.labsystem.dto.UserDTO;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,9 +23,10 @@ public class Dashboard extends javax.swing.JFrame {
 
     UserController userController;
     LoginHistoryController historyController;
+
     public Dashboard() {
         initComponents();
-        historyController = (LoginHistoryController) ControllerFactory.getInstance().getControlelr(ControllerFactory.ControllerTypes.LOGIN);
+        historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
     }
 
     /**
@@ -169,8 +171,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
             UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
-            LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
-            historyController.add(history);
+            boolean exist = userController.isExist(dTO);
+            if (exist) {
+                LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
+                historyController.add(history);
+            }else{
+                JOptionPane.showMessageDialog(Dashboard.this,"Incorrect Login Details" , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }

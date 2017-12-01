@@ -7,6 +7,9 @@ package com.iccconstruct.labsystem.dao.custom.impl;
 
 import com.iccconstruct.labsystem.dao.custom.ConcreteDAO;
 import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +20,16 @@ public class ConcreteDAOImpl implements ConcreteDAO{
 
     @Override
     public ArrayList<ConcreteWorkDTO> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File path = new File("_concrete");
+        File[] listFiles = path.listFiles();
+        ArrayList<ConcreteWorkDTO> objs = new ArrayList<>();
+        for (File file : listFiles) {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ConcreteWorkDTO dto =(ConcreteWorkDTO) ois.readObject();
+            objs.add(dto);
+        }
+        return objs;
     }
 
     @Override
