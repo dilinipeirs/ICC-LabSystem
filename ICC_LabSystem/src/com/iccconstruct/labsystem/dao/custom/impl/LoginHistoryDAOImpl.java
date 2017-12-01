@@ -3,40 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iccconstruct.labsystem.controller.custom.impl;
+package com.iccconstruct.labsystem.dao.custom.impl;
 
-import com.iccconstruct.labsystem.controller.custom.UserController;
-import com.iccconstruct.labsystem.dto.UserDTO;
+import com.iccconstruct.labsystem.dao.custom.LoginHistoryDAO;
+import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
 import java.util.ArrayList;
 
 /**
  *
  * @author Dilini Peiris
  */
-public class UserControllerImpl implements UserController{
+public class LoginHistoryDAOImpl implements LoginHistoryDAO{
 
     @Override
-    public ArrayList<UserDTO> getAll() throws Exception {
+    public ArrayList<LoginHistoryDTO> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean add(UserDTO dto) throws Exception {
+    public boolean add(LoginHistoryDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean add(ArrayList<UserDTO> dto) throws Exception {
+    public boolean add(ArrayList<LoginHistoryDTO> dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public UserDTO search(String id) throws Exception {
+    public LoginHistoryDTO search(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int update(UserDTO dto, String oldID) throws Exception {
+    public int update(LoginHistoryDTO dto, String oldID) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -51,8 +51,8 @@ public class UserControllerImpl implements UserController{
     }
 
     @Override
-    public boolean isExist(UserDTO dto) throws Exception {
-        return false;
+    public boolean isExist(LoginHistoryDTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

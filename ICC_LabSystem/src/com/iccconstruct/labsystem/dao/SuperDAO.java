@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iccconstruct.labsystem.controller;
+package com.iccconstruct.labsystem.dao;
 
 import com.iccconstruct.labsystem.dto.SuperDTO;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public interface SuperController <T extends SuperDTO>{
+public interface SuperDAO <T extends SuperDTO>{
     public ArrayList<T> getAll() throws Exception;
     
     public boolean add(T dto) throws Exception;

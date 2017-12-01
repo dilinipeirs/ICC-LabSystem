@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iccconstruct.labsystem.controller.custom.impl;
+package com.iccconstruct.labsystem.dao.custom.impl;
 
-import com.iccconstruct.labsystem.controller.custom.UserController;
+import com.iccconstruct.labsystem.dao.custom.UserDAO;
 import com.iccconstruct.labsystem.dto.UserDTO;
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public class UserControllerImpl implements UserController{
+public class UserDAOImpl implements UserDAO{
 
     @Override
     public ArrayList<UserDTO> getAll() throws Exception {
@@ -52,7 +52,7 @@ public class UserControllerImpl implements UserController{
 
     @Override
     public boolean isExist(UserDTO dto) throws Exception {
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

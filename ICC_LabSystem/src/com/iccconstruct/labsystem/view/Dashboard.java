@@ -5,8 +5,14 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
 import com.iccconstruct.labsystem.controller.custom.UserController;
+import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
 import com.iccconstruct.labsystem.dto.UserDTO;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,9 +20,11 @@ import com.iccconstruct.labsystem.dto.UserDTO;
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    UserController controller;
+    UserController userController;
+    LoginHistoryController historyController;
     public Dashboard() {
         initComponents();
+        historyController = (LoginHistoryController) ControllerFactory.getInstance().getControlelr(ControllerFactory.ControllerTypes.LOGIN);
     }
 
     /**
@@ -159,8 +167,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
-        
+        try {
+            UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
+            LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
+            historyController.add(history);
+        } catch (Exception ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

@@ -27,6 +27,13 @@ public class LoginHistoryDTO extends SuperDTO{
         this.logOut = logOut;
     }
 
+    public LoginHistoryDTO(UserDTO dTO, LocalDateTime logIN) {
+        this.dTO = dTO;
+        this.logIN = logIN;
+    }
+
+    
+    
     /**
      * @return the logID
      */
