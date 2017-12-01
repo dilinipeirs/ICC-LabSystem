@@ -5,15 +5,16 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.custom.UserController;
+import com.iccconstruct.labsystem.dto.UserDTO;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Dashboard
-     */
+    UserController controller;
     public Dashboard() {
         initComponents();
     }
@@ -158,7 +159,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
