@@ -5,17 +5,28 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
+import com.iccconstruct.labsystem.controller.custom.UserController;
+import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
+import com.iccconstruct.labsystem.dto.UserDTO;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Dashboard
-     */
+    UserController userController;
+    LoginHistoryController historyController;
+
     public Dashboard() {
         initComponents();
+        historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
     }
 
     /**
@@ -158,7 +169,19 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        try {
+            UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
+            boolean exist = userController.isExist(dTO);
+            if (exist) {
+                LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
+                historyController.add(history);
+            }else{
+                JOptionPane.showMessageDialog(Dashboard.this,"Incorrect Login Details" , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

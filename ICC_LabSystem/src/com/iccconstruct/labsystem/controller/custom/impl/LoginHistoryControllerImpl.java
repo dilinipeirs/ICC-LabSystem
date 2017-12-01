@@ -49,5 +49,10 @@ public class LoginHistoryControllerImpl implements LoginHistoryController{
     public int getCount() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean isExist(LoginHistoryDTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.iccconstruct.labsystem.dto;
+package com.iccconstruct.labsystem.dao.custom;
 
-import java.io.Serializable;
+import com.iccconstruct.labsystem.dao.SuperDAO;
+import com.iccconstruct.labsystem.dto.FormDTO;
 
 /**
  *
  * @author Dilini Peiris
  */
-public class SuperDTO implements Serializable{
+public interface FormDAO extends SuperDAO<FormDTO>{
     
 }
