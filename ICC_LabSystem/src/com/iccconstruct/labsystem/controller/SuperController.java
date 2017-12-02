@@ -21,7 +21,7 @@ public interface SuperController <T extends SuperDTO>{
     
     public T search(String id) throws Exception;
     
-    public int update(T dto,String oldID) throws Exception;
+    public int update(T dto) throws Exception;
     
     public int delete(String id) throws Exception;
     

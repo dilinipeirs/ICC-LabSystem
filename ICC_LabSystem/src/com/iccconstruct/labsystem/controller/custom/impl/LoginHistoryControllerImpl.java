@@ -44,7 +44,7 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
     }
 
     @Override
-    public int update(LoginHistoryDTO dto, String oldID) throws Exception {
+    public int update(LoginHistoryDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
