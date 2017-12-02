@@ -10,6 +10,7 @@ import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
 import com.iccconstruct.labsystem.controller.custom.UserController;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
 import com.iccconstruct.labsystem.dto.UserDTO;
+import com.jidesoft.swing.AutoCompletion;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,10 +24,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     UserController userController;
     LoginHistoryController historyController;
+    public static UserDTO user;
 
     public Dashboard() {
         initComponents();
         historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
+        userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
+
+        AutoCompletion ac = new AutoCompletion(cmdUserType);
     }
 
     /**
@@ -59,6 +64,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/iccconstruct/labsystem/resources/images/icon-default-profile.png"))); // NOI18N
 
         txtUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -78,7 +85,12 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel4.setText("User Type");
 
-        cmdUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "User" }));
+        cmdUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "User", "Admin" }));
+        cmdUserType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdUserTypeActionPerformed(evt);
+            }
+        });
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogin.setText("Log In");
@@ -98,19 +110,23 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(psswrdPass)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsername)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(75, 75, 75))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
+                .addGap(135, 135, 135)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(cmdUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addContainerGap(104, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +145,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(psswrdPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(42, 42, 42)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,22 +155,22 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
+                .addGap(120, 120, 120)
                 .addComponent(btnViewMixDesigns, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
                 .addComponent(btnViewMixDesigns, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,24 +181,37 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewMixDesignsActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
+        psswrdPass.requestFocus();
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
         try {
-            UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()));
+            UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()), cmdUserType.getSelectedItem().toString());
             boolean exist = userController.isExist(dTO);
+            user = dTO;
             if (exist) {
                 LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
                 historyController.add(history);
-            }else{
-                JOptionPane.showMessageDialog(Dashboard.this,"Incorrect Login Details" , "Error", JOptionPane.ERROR_MESSAGE);
+                if (dTO.getUserType().equals("Admin")) {
+                    this.dispose();
+                    new AdminHome().setVisible(true);
+                } else {
+                    this.dispose();
+                    new UserHome().setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(Dashboard.this, "Incorrect Login Details", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void cmdUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdUserTypeActionPerformed
+        txtUsername.requestFocus();
+    }//GEN-LAST:event_cmdUserTypeActionPerformed
 
     /**
      * @param args the command line arguments

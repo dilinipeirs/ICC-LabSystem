@@ -5,17 +5,58 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.ConcreteController;
+import com.iccconstruct.labsystem.controller.custom.FormController;
+import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
+import com.iccconstruct.labsystem.dto.FormDTO;
+import com.jidesoft.swing.AutoCompletion;
+import java.awt.Component;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class MixDesignForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MixDesignForm
-     */
+    ConcreteController concreteController;
+    FormController formController;
+    ConcreteWorkDTO concreteWorkDTO;
+
     public MixDesignForm() {
-        initComponents();
+        try {
+            initComponents();
+            setLocationRelativeTo(null);
+            setDateTime();
+
+            AutoCompletion ac = new AutoCompletion(cmbConcreteGrade);
+
+            concreteController = (ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
+            formController = (FormController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.FORM);
+            setConcrete();
+
+            Component[] components = this.getRootPane().getComponents();
+
+            for (Component component : components) {
+                if (component instanceof JTextField) {
+                    setDocumentListener((JTextField) component);
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -107,6 +148,11 @@ public class MixDesignForm extends javax.swing.JFrame {
         jLabel3.setText("Concrete Grade :");
 
         cmbConcreteGrade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbConcreteGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbConcreteGradeActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Moisture content fine aggregate :");
@@ -125,6 +171,11 @@ public class MixDesignForm extends javax.swing.JFrame {
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel33.setText("kg");
 
@@ -489,12 +540,12 @@ public class MixDesignForm extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addComponent(jLabel4)
@@ -508,7 +559,9 @@ public class MixDesignForm extends javax.swing.JFrame {
                             .addComponent(txtMCourseAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel17))
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -533,6 +586,10 @@ public class MixDesignForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,13 +600,13 @@ public class MixDesignForm extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbConcreteGrade))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
@@ -557,7 +614,7 @@ public class MixDesignForm extends javax.swing.JFrame {
                     .addComponent(txtMCourseAgg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,16 +647,49 @@ public class MixDesignForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMFineAggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMFineAggActionPerformed
-        // TODO add your handling code here:
+        txtMCourseAgg.requestFocus();
     }//GEN-LAST:event_txtMFineAggActionPerformed
 
     private void txtMCourseAggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMCourseAggActionPerformed
-        // TODO add your handling code here:
+        txtWater.requestFocus();
+        txtWater.selectAll();
+
     }//GEN-LAST:event_txtMCourseAggActionPerformed
 
     private void txtWaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWaterActionPerformed
-        // TODO add your handling code here:
+        btnSubmit.requestFocus();
     }//GEN-LAST:event_txtWaterActionPerformed
+
+    private void cmbConcreteGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConcreteGradeActionPerformed
+        try {
+            concreteWorkDTO = concreteController.search(cmbConcreteGrade.getSelectedItem().toString());
+            txtMFineAgg.requestFocus();
+            lblAddMix.setText(concreteWorkDTO.getAdmix() + "");
+            lblCement.setText(concreteWorkDTO.getCement() + "");
+            lblCourseAgg.setText(concreteWorkDTO.getCourse_agg() + "");
+            lblFineAgg.setText(concreteWorkDTO.getFine_agg() + "");
+            lblFlyAsh.setText(concreteWorkDTO.getFly_ash() + "");
+            lblRatio.setText(concreteWorkDTO.getRatio());
+            lblSilicaFume.setText(concreteWorkDTO.getSilica_fume() + "");
+            lblWater.setText(concreteWorkDTO.getWater() + "");
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbConcreteGradeActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        if (lblRatio2.getText() == null) {
+            JOptionPane.showMessageDialog(MixDesignForm.this, "Please enter Moisture Content Fine Aggregate and Moisture Content Course Aggregate to continue", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                FormDTO dTO = new FormDTO(Dashboard.user, LocalDateTime.now(), concreteWorkDTO, new Double(txtMFineAgg.getText()), new Double(txtMCourseAgg.getText()), new Double(txtWater.getText()), new Double(lblRatio2.getText()));
+                formController.add(dTO);
+            } catch (Exception ex) {
+                Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -705,4 +795,50 @@ public class MixDesignForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtMFineAgg;
     private javax.swing.JTextField txtWater;
     // End of variables declaration//GEN-END:variables
+
+    private void setDateTime() {
+        LocalDate date = LocalDate.now();
+        lblDate.setText(date.toString());
+
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("hh:mm:ss");
+        lblTime.setText(format.format(time));
+    }
+
+    private void setConcrete() throws Exception {
+        ArrayList<ConcreteWorkDTO> all = concreteController.getAll();
+        if (all == null) {
+            JOptionPane.showMessageDialog(MixDesignForm.this, "There are no Concerte Grades to be displayed", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            for (ConcreteWorkDTO all1 : all) {
+                cmbConcreteGrade.addItem(all1.getConcreteGrade());
+            }
+        }
+
+    }
+
+    private void setDocumentListener(JTextField field) {
+        field.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                changed();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                changed();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                changed();
+            }
+
+            public void changed() {
+                if (field.getText().equals("")) {
+                    btnSubmit.setEnabled(false);
+                } else {
+                    btnSubmit.setEnabled(true);
+                }
+
+            }
+        });
+    }
 }

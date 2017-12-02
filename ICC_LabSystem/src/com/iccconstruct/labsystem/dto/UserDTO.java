@@ -9,7 +9,8 @@ package com.iccconstruct.labsystem.dto;
  *
  * @author Dilini Peiris
  */
-public class UserDTO extends SuperDTO{
+public class UserDTO extends SuperDTO {
+
     private int userID;
     private String title;
     private String epf;
@@ -21,11 +22,12 @@ public class UserDTO extends SuperDTO{
     private String contact;
     private String username;
     private String password;
+    private String userType;
 
     public UserDTO() {
     }
 
-    public UserDTO(int userID, String title, String epf, String fname, String lname, String designation, String officeMail, String personalMail, String contact, String username, String password) {
+    public UserDTO(int userID, String title, String epf, String fname, String lname, String designation, String officeMail, String personalMail, String contact, String username, String password, String userType) {
         this.userID = userID;
         this.title = title;
         this.epf = epf;
@@ -37,14 +39,15 @@ public class UserDTO extends SuperDTO{
         this.contact = contact;
         this.username = username;
         this.password = password;
+        this.userType = userType;
     }
 
-    public UserDTO(String username, String password) {
+    public UserDTO(String username, String password, String userType) {
         this.username = username;
         this.password = password;
+        this.userType = userType;
     }
 
-    
     /**
      * @return the userID
      */
@@ -198,6 +201,19 @@ public class UserDTO extends SuperDTO{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
+    /**
+     * @return the userType
+     */
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * @param userType the userType to set
+     */
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
 }

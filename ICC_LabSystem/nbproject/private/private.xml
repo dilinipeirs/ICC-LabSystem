@@ -3,6 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
-        <group name="Hibernate"/>
+        <group name="Hibernate">
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/impl/ConcreteDAOImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/impl/UserDAOImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/custom/impl/UserControllerImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/DAOFactory.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/UserDTO.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/UserDAO.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/MixDesignForm.java</file>
+        </group>
     </open-files>
 </project-private>
