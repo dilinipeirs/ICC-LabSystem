@@ -44,8 +44,8 @@ public class UserControllerImpl implements UserController{
     }
 
     @Override
-    public int update(UserDTO dto, String oldID) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int update(UserDTO dto) throws Exception {
+        return userDAO.update(dto);
     }
 
     @Override

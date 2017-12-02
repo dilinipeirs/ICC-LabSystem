@@ -44,7 +44,7 @@ public class FormControllerImpl implements FormController {
     }
 
     @Override
-    public int update(FormDTO dto, String oldID) throws Exception {
+    public int update(FormDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -58,12 +58,12 @@ public class ConcreteDAOImpl implements ConcreteDAO {
     }
 
     @Override
-    public int update(ConcreteWorkDTO dto, String oldID) throws Exception {
+    public boolean update(ConcreteWorkDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int delete(String id) throws Exception {
+    public boolean delete(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

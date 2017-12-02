@@ -45,7 +45,7 @@ public class ConcreteControllerImpl implements ConcreteController{
     }
 
     @Override
-    public int update(ConcreteWorkDTO dto, String oldID) throws Exception {
+    public int update(ConcreteWorkDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
