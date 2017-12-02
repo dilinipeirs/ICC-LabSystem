@@ -6,6 +6,8 @@
 package com.iccconstruct.labsystem.controller.custom.impl;
 
 import com.iccconstruct.labsystem.controller.custom.FormController;
+import com.iccconstruct.labsystem.dao.DAOFactory;
+import com.iccconstruct.labsystem.dao.custom.FormDAO;
 import com.iccconstruct.labsystem.dto.FormDTO;
 import java.util.ArrayList;
 
@@ -13,7 +15,13 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public class FormControllerImpl implements FormController{
+public class FormControllerImpl implements FormController {
+
+    FormDAO formDAO;
+
+    public FormControllerImpl() {
+        formDAO = (FormDAO) DAOFactory.getInstance().getDAO(DAOFactory.ControllerTypes.FORM);
+    }
 
     @Override
     public ArrayList<FormDTO> getAll() throws Exception {
@@ -22,7 +30,7 @@ public class FormControllerImpl implements FormController{
 
     @Override
     public boolean add(FormDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return formDAO.add(dto);
     }
 
     @Override
@@ -54,5 +62,5 @@ public class FormControllerImpl implements FormController{
     public boolean isExist(FormDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -19,7 +19,7 @@ public class FormDTO extends SuperDTO {
     private Double moisture_fine;
     private Double moisture_course;
     private Double adj_water;
-    private Double abj_ratio;
+    private Double adj_ratio;
 
     public FormDTO() {
     }
@@ -32,9 +32,20 @@ public class FormDTO extends SuperDTO {
         this.moisture_fine = moisture_fine;
         this.moisture_course = moisture_course;
         this.adj_water = adj_water;
-        this.abj_ratio = abj_ratio;
+        this.adj_ratio = abj_ratio;
     }
 
+    public FormDTO(UserDTO u, LocalDateTime createDateTime, ConcreteWorkDTO concreteWorkDTO, Double moisture_fine, Double moisture_course, Double adj_water, Double abj_ratio) {
+        this.u = u;
+        this.createDateTime = createDateTime;
+        this.concreteWorkDTO = concreteWorkDTO;
+        this.moisture_fine = moisture_fine;
+        this.moisture_course = moisture_course;
+        this.adj_water = adj_water;
+        this.adj_ratio = abj_ratio;
+    }
+
+    
     /**
      * @return the formID
      */
@@ -134,17 +145,17 @@ public class FormDTO extends SuperDTO {
     }
 
     /**
-     * @return the abj_ratio
+     * @return the adj_ratio
      */
-    public Double getAbj_ratio() {
-        return abj_ratio;
+    public Double getAdj_ratio() {
+        return adj_ratio;
     }
 
     /**
-     * @param abj_ratio the abj_ratio to set
+     * @param adj_ratio the adj_ratio to set
      */
-    public void setAbj_ratio(Double abj_ratio) {
-        this.abj_ratio = abj_ratio;
+    public void setAdj_ratio(Double adj_ratio) {
+        this.adj_ratio = adj_ratio;
     }
     
     

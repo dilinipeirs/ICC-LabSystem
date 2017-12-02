@@ -5,7 +5,9 @@
  */
 package com.iccconstruct.labsystem.main;
 
+import com.iccconstruct.labsystem.view.Dashboard;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,9 +24,11 @@ public class ICC_LabSystem {
         if(create){
             System.out.println("directories all created");
         }else{
+            JOptionPane.showMessageDialog(null, "There was an error at Application Start Up. Please Contact System Support", "Error! Cannot Start Application", JOptionPane.ERROR_MESSAGE);
             System.out.println("directories are not done");
         }
 
+        new Dashboard().setVisible(true);
     }
 
     private static boolean createDirectory() {

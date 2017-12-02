@@ -43,7 +43,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public UserDTO search(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<UserDTO> all = getAll();
+        for (UserDTO all1 : all) {
+            if (all1.getUsername().equals(id) ) {
+                return all1;
+            }
+
+        }
+        return null;
     }
 
     @Override
@@ -65,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean isExist(UserDTO dto) throws Exception {
         ArrayList<UserDTO> all = getAll();
         for (UserDTO all1 : all) {
-            if (all1.getUsername().equals(dto.getUsername()) && all1.getPassword().equals(dto.getPassword())) {
+            if (all1.getUsername().equals(dto.getUsername()) && all1.getPassword().equals(dto.getPassword()) && all1.getUserType().equals(dto.getUserType())) {
                 return true;
             }
 
