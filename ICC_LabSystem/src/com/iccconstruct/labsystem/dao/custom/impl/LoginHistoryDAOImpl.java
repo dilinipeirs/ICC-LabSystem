@@ -7,26 +7,32 @@ package com.iccconstruct.labsystem.dao.custom.impl;
 
 import com.iccconstruct.labsystem.dao.custom.LoginHistoryDAO;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 /**
  *
  * @author Dilini Peiris
  */
-public class LoginHistoryDAOImpl implements LoginHistoryDAO{
+public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public ArrayList<LoginHistoryDTO> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File path = new File("_data/_loginHis");
+        File[] listFiles = path.listFiles();
+        ArrayList<LoginHistoryDTO> objs = new ArrayList<>();
+        for (File file : listFiles) {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            objs.add((LoginHistoryDTO) ois.readObject());
+        }
+        return objs;
     }
 
     @Override
     public boolean add(LoginHistoryDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean add(ArrayList<LoginHistoryDTO> dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -54,5 +60,5 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO{
     public boolean isExist(LoginHistoryDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

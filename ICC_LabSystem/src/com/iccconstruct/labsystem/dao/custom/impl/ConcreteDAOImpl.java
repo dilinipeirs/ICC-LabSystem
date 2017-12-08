@@ -43,11 +43,6 @@ public class ConcreteDAOImpl implements ConcreteDAO {
     }
 
     @Override
-    public boolean add(ArrayList<ConcreteWorkDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ConcreteWorkDTO search(String id) throws Exception {
         ArrayList<ConcreteWorkDTO> all = getAll();
         for (ConcreteWorkDTO all1 : all) {

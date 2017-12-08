@@ -17,11 +17,9 @@ public interface SuperController <T extends SuperDTO>{
     
     public boolean add(T dto) throws Exception;
     
-    public boolean add(ArrayList<T> dto) throws Exception;
-    
     public T search(String id) throws Exception;
     
-    public int update(T dto) throws Exception;
+    public boolean update(T dto) throws Exception;
     
     public int delete(String id) throws Exception;
     

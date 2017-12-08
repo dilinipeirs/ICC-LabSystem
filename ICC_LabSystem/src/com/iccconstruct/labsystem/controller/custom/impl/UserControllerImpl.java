@@ -15,14 +15,14 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public class UserControllerImpl implements UserController{
+public class UserControllerImpl implements UserController {
 
     UserDAO userDAO;
+
     public UserControllerImpl() {
         userDAO = (UserDAO) DAOFactory.getInstance().getDAO(DAOFactory.ControllerTypes.USER);
     }
-  
-    
+
     @Override
     public ArrayList<UserDTO> getAll() throws Exception {
         return userDAO.getAll();
@@ -34,17 +34,12 @@ public class UserControllerImpl implements UserController{
     }
 
     @Override
-    public boolean add(ArrayList<UserDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public UserDTO search(String id) throws Exception {
         return userDAO.search(id);
     }
 
     @Override
-    public int update(UserDTO dto) throws Exception {
+    public boolean update(UserDTO dto) throws Exception {
         return userDAO.update(dto);
     }
 
@@ -62,5 +57,5 @@ public class UserControllerImpl implements UserController{
     public boolean isExist(UserDTO dto) throws Exception {
         return userDAO.isExist(dto);
     }
-    
+
 }

@@ -12,20 +12,19 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public interface SuperDAO <T extends SuperDTO>{
+public interface SuperDAO<T extends SuperDTO> {
+
     public ArrayList<T> getAll() throws Exception;
-    
+
     public boolean add(T dto) throws Exception;
-    
-    public boolean add(ArrayList<T> dto) throws Exception;
-    
+
     public T search(String id) throws Exception;
-    
+
     public boolean update(T dto) throws Exception;
-    
+
     public boolean delete(String id) throws Exception;
-    
+
     public int getCount() throws Exception;
-    
+
     public boolean isExist(T dto) throws Exception;
 }

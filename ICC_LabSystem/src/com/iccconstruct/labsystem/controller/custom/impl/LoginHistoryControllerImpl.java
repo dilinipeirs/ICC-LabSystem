@@ -34,17 +34,12 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
     }
 
     @Override
-    public boolean add(ArrayList<LoginHistoryDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public LoginHistoryDTO search(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int update(LoginHistoryDTO dto) throws Exception {
+    public boolean update(LoginHistoryDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
