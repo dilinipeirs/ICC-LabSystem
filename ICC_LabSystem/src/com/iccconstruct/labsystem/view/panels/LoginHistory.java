@@ -5,17 +5,31 @@
  */
 package com.iccconstruct.labsystem.view.panels;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
+import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class LoginHistory extends javax.swing.JPanel {
 
-    /**
-     * Creates new form LoginHistory
-     */
+    LoginHistoryController historyController;
+    
     public LoginHistory() {
-        initComponents();
+        try {
+            initComponents();
+            historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
+            setHistory();
+        } catch (Exception ex) {
+            Logger.getLogger(LoginHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -63,4 +77,18 @@ public class LoginHistory extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblLoginHis;
     // End of variables declaration//GEN-END:variables
+
+    private void setHistory() throws Exception {
+        ArrayList<LoginHistoryDTO> all = historyController.getAll();
+        if(all==null){
+            JOptionPane.showMessageDialog(LoginHistory.this, "There are no login details to display", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        DefaultTableModel dtm =(DefaultTableModel) tblLoginHis.getModel();
+        dtm.setRowCount(0);
+        for (LoginHistoryDTO all1 : all) {
+            Object[] rowData = {all1.getLogID(),all1.getdTO().getUsername(),all1.getdTO().getFname()+all1.getdTO().getLname(),all1.getLogIN(),all1.getLogOut()};
+            dtm.addRow(rowData);
+        }
+    }
 }

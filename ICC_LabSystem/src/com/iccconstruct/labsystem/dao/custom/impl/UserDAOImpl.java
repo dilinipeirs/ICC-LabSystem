@@ -35,11 +35,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean add(UserDTO dto) throws Exception {
-        FileOutputStream fos = new FileOutputStream("_data/_form/" + dto.getUserID()+ ".ser");
+        FileOutputStream fos = new FileOutputStream("_data/_form/" + dto.getUserID() + ".ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(dto);
 
-        File file = new File("_data/_form/" + dto.getUserID()+ ".ser");
+        File file = new File("_data/_form/" + dto.getUserID() + ".ser");
         if (file.exists()) {
             return true;
         }
@@ -47,15 +47,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean add(ArrayList<UserDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public UserDTO search(String id) throws Exception {
         ArrayList<UserDTO> all = getAll();
         for (UserDTO all1 : all) {
-            if (all1.getUsername().equals(id) ) {
+            if (all1.getUsername().equals(id)) {
                 return all1;
             }
 
@@ -65,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(UserDTO dto) throws Exception {
-        if(delete(dto.getUserID()+"")){
+        if (delete(dto.getUserID() + "")) {
             return add(dto);
         }
         return false;
@@ -73,7 +68,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean delete(String id) throws Exception {
-        File file = new File("_data/_user/"+id+".ser");
+        File file = new File("_data/_user/" + id + ".ser");
         return file.delete();
     }
 

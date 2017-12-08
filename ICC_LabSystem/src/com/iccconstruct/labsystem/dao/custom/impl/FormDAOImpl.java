@@ -37,11 +37,6 @@ public class FormDAOImpl implements FormDAO {
     }
 
     @Override
-    public boolean add(ArrayList<FormDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public FormDTO search(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

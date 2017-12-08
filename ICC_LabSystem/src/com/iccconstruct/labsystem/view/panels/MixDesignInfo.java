@@ -5,17 +5,33 @@
  */
 package com.iccconstruct.labsystem.view.panels;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.ConcreteController;
+import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class MixDesignInfo extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MixDesignInfo
-     */
+    ConcreteController concreteController;
+
     public MixDesignInfo() {
-        initComponents();
+        try {
+            initComponents();
+            concreteController = (ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
+            setConcrete();
+            btnAdd.setEnabled(false);
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -252,6 +268,11 @@ public class MixDesignInfo extends javax.swing.JPanel {
         );
 
         btnSave.setText("Save and Submit");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         tblConcreteGrade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +291,11 @@ public class MixDesignInfo extends javax.swing.JPanel {
             }
         });
         tblConcreteGrade.getTableHeader().setReorderingAllowed(false);
+        tblConcreteGrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblConcreteGradeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblConcreteGrade);
         if (tblConcreteGrade.getColumnModel().getColumnCount() > 0) {
             tblConcreteGrade.getColumnModel().getColumn(0).setResizable(false);
@@ -347,8 +373,35 @@ public class MixDesignInfo extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSilicaFumeActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        Component[] components = getRootPane().getComponents();
+        for (Component component : components) {
+            if(component instanceof JTextField)
+                ((JTextField)component).setText("");
+        }
+        lblWaterCement.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblConcreteGradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblConcreteGradeMouseClicked
+        try {
+            ConcreteWorkDTO search = concreteController.search((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), tblConcreteGrade.getSelectedColumn()));
+            txtAddMix.setText(search.getAdmix() + "");
+            txtCement.setText(search.getCement() + "");
+            txtCourseAgg.setText(search.getCourse_agg() + "");
+            txtFineAgg.setText(search.getFine_agg() + "");
+            txtFlyAsh.setText(search.getFly_ash() + "");
+            txtSilicaFume.setText(search.getSilica_fume() + "");
+            txtWater.setText(search.getWater() + "");
+            lblWaterCement.setText(search.getRatio() + "");
+            btnAdd.setEnabled(true);
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tblConcreteGradeMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), lblWaterCement.getText());
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -381,4 +434,14 @@ public class MixDesignInfo extends javax.swing.JPanel {
     private javax.swing.JTextField txtSilicaFume;
     private javax.swing.JTextField txtWater;
     // End of variables declaration//GEN-END:variables
+
+    private void setConcrete() throws Exception {
+        ArrayList<ConcreteWorkDTO> all = concreteController.getAll();
+        DefaultTableModel dtm = (DefaultTableModel) tblConcreteGrade.getModel();
+        dtm.setRowCount(0);
+        for (ConcreteWorkDTO all1 : all) {
+            Object[] rowData = {all1.getConcreteGrade()};
+            dtm.addRow(rowData);
+        }
+    }
 }

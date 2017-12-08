@@ -15,15 +15,14 @@ import java.util.ArrayList;
  *
  * @author Dilini Peiris
  */
-public class ConcreteControllerImpl implements ConcreteController{
+public class ConcreteControllerImpl implements ConcreteController {
 
     ConcreteDAO concreteDAO;
 
     public ConcreteControllerImpl() {
-    concreteDAO = (ConcreteDAO) DAOFactory.getInstance().getDAO(DAOFactory.ControllerTypes.CONCRETE);
+        concreteDAO = (ConcreteDAO) DAOFactory.getInstance().getDAO(DAOFactory.ControllerTypes.CONCRETE);
     }
-    
-    
+
     @Override
     public ArrayList<ConcreteWorkDTO> getAll() throws Exception {
         return concreteDAO.getAll();
@@ -35,17 +34,12 @@ public class ConcreteControllerImpl implements ConcreteController{
     }
 
     @Override
-    public boolean add(ArrayList<ConcreteWorkDTO> dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ConcreteWorkDTO search(String id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int update(ConcreteWorkDTO dto) throws Exception {
+    public boolean update(ConcreteWorkDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -63,5 +57,5 @@ public class ConcreteControllerImpl implements ConcreteController{
     public boolean isExist(ConcreteWorkDTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
