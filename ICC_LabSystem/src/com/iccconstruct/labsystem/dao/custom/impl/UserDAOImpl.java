@@ -35,11 +35,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean add(UserDTO dto) throws Exception {
-        FileOutputStream fos = new FileOutputStream("_data/_form/" + dto.getUserID() + ".ser");
+        FileOutputStream fos = new FileOutputStream("_data/_user/" + dto.getUserID() + ".ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(dto);
 
-        File file = new File("_data/_form/" + dto.getUserID() + ".ser");
+        File file = new File("_data/_user/" + dto.getUserID() + ".ser");
         if (file.exists()) {
             return true;
         }
@@ -87,6 +87,18 @@ public class UserDAOImpl implements UserDAO {
 
         }
         return false;
+    }
+
+    @Override
+    public boolean addMaintainace(UserDTO maintain) throws Exception{
+        File file = new File("_data/_user/" + maintain.getUserID() + ".ser");
+        file.setReadOnly();
+        FileOutputStream fos = new FileOutputStream(file);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(maintain);
+        
+        return file.exists();
+        
     }
 
 }

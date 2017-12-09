@@ -13,5 +13,7 @@ import com.iccconstruct.labsystem.dto.UserDTO;
  * @author Dilini Peiris
  */
 public interface UserDAO extends SuperDAO<UserDTO>{
+
+    public boolean addMaintainace(UserDTO maintain)throws Exception;
     
 }

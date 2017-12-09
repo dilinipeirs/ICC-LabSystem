@@ -15,15 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class ICC_LabSystem {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         boolean create = createDirectory();
-        if(create){
+        if (create) {
             System.out.println("directories all created");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "There was an error at Application Start Up. Please Contact System Support", "Error! Cannot Start Application", JOptionPane.ERROR_MESSAGE);
             System.out.println("directories are not done");
         }

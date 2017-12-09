@@ -13,5 +13,7 @@ import com.iccconstruct.labsystem.dto.UserDTO;
  * @author Dilini Peiris
  */
 public interface UserController extends SuperController<UserDTO>{
+
+    public boolean addMaintainance(UserDTO maintain)throws Exception;
     
 }

@@ -27,11 +27,17 @@ public class Dashboard extends javax.swing.JFrame {
     public static UserDTO user;
 
     public Dashboard() {
-        initComponents();
-        historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
-        userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
+        try {
+            initComponents();
 
-        AutoCompletion ac = new AutoCompletion(cmdUserType);
+            makeFirstAdmin();
+            historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
+            userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
+
+            AutoCompletion ac = new AutoCompletion(cmdUserType);
+        } catch (Exception ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -260,4 +266,25 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPasswordField psswrdPass;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void makeFirstAdmin() throws Exception {
+        boolean add = false, add2 = false;
+        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "ADMIN", "admin");
+        if (!userController.isExist(userDTO)) {
+            add = userController.add(userDTO);
+        }
+        add = true;
+        UserDTO maintain = new UserDTO(2, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "admin");
+        if (!userController.isExist(maintain)) {
+            add2 = userController.addMaintainance(maintain);
+        }
+        add2 = true;
+
+        if (add && add2) {
+            System.out.println("admin users made successfully");
+        } else {
+            JOptionPane.showMessageDialog(Dashboard.this, "Couldn't define Admin users. Please contact System Administrator", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 }
