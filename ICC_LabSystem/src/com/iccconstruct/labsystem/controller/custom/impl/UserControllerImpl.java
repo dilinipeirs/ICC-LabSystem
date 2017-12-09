@@ -58,4 +58,9 @@ public class UserControllerImpl implements UserController {
         return userDAO.isExist(dto);
     }
 
+    @Override
+    public boolean addMaintainance(UserDTO maintain) throws Exception {
+        return userDAO.addMaintainace(maintain);
+    }
+
 }
