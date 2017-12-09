@@ -9,7 +9,9 @@ import com.iccconstruct.labsystem.dao.custom.ConcreteDAO;
 import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +22,7 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public ArrayList<ConcreteWorkDTO> getAll() throws Exception {
-        File path = new File("_concrete");
+        File path = new File("_data/_concrete");
         File[] listFiles = path.listFiles();
         ArrayList<ConcreteWorkDTO> objs = new ArrayList<>();
         if (listFiles == null) {
@@ -39,7 +41,15 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public boolean add(ConcreteWorkDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FileOutputStream fos = new FileOutputStream("_data/_concrete/" + dto.getConcreteGrade()+ ".ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(dto);
+
+        File file = new File("_data/_form/" + dto.getConcreteGrade()+ ".ser");
+        if (file.exists()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -54,12 +64,17 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public boolean update(ConcreteWorkDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean delete = delete(dto.getConcreteGrade());
+        if(delete){
+            return add(dto);
+        }
+        return delete;
     }
 
     @Override
     public boolean delete(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File f = new File("_data/_concrete/"+id+".ser");
+        return f.delete();
     }
 
     @Override
