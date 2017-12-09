@@ -375,8 +375,9 @@ public class MixDesignInfo extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Component[] components = getRootPane().getComponents();
         for (Component component : components) {
-            if(component instanceof JTextField)
-                ((JTextField)component).setText("");
+            if (component instanceof JTextField) {
+                ((JTextField) component).setText("");
+            }
         }
         lblWaterCement.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
@@ -399,8 +400,16 @@ public class MixDesignInfo extends javax.swing.JPanel {
     }//GEN-LAST:event_tblConcreteGradeMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), lblWaterCement.getText());
-        
+        try {
+            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), lblWaterCement.getText());
+            if (concreteController.isExist(concreteWorkDTO)) {
+                concreteController.update(concreteWorkDTO);
+            } else {
+                concreteController.add(concreteWorkDTO);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
