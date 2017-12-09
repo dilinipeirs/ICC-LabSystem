@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
     public UserDTO search(String id) throws Exception {
         ArrayList<UserDTO> all = getAll();
         for (UserDTO all1 : all) {
-            if (all1.getUsername().equals(id)) {
+            if (all1.getUsername().equals(id)||all1.getEpf().equals(id)) {
                 return all1;
             }
 

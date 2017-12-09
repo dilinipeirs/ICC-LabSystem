@@ -48,6 +48,22 @@ public class UserDTO extends SuperDTO {
         this.userType = userType;
     }
 
+    public UserDTO(String title, String epf, String fname, String lname, String designation, String officeMail, String personalMail, String contact, String username, String password, String userType) {
+        this.title = title;
+        this.epf = epf;
+        this.fname = fname;
+        this.lname = lname;
+        this.designation = designation;
+        this.officeMail = officeMail;
+        this.personalMail = personalMail;
+        this.contact = contact;
+        this.username = username;
+        this.password = password;
+        this.userType = userType;
+    }
+
+    
+    
     /**
      * @return the userID
      */
