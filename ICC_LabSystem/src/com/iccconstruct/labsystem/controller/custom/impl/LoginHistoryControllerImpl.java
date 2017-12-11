@@ -25,7 +25,7 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
 
     @Override
     public ArrayList<LoginHistoryDTO> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return historyDAO.getAll();
     }
 
     @Override

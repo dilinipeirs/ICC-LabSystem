@@ -9,7 +9,9 @@ import com.iccconstruct.labsystem.dao.custom.LoginHistoryDAO;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +35,15 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean add(LoginHistoryDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FileOutputStream fos = new FileOutputStream("_data/_loginHis/" + dto.getLogID()+ ".ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(dto);
+
+        File file = new File("_data/_loginHis/" + dto.getLogID()+ ".ser");
+        if (file.exists()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

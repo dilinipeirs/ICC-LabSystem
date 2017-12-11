@@ -44,6 +44,8 @@ public class LoginHistory extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLoginHis = new javax.swing.JTable();
 
+        setPreferredSize(new java.awt.Dimension(560, 560));
+
         tblLoginHis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -67,8 +69,8 @@ public class LoginHistory extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
