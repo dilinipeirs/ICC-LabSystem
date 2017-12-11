@@ -29,10 +29,11 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         try {
             initComponents();
-
-            makeFirstAdmin();
+            setLocationRelativeTo(null);
+            txtUsername.requestFocus();
             historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
             userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
+            makeFirstAdmin();
 
             AutoCompletion ac = new AutoCompletion(cmdUserType);
         } catch (Exception ex) {
@@ -88,6 +89,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         psswrdPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        psswrdPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psswrdPassActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("User Type");
 
@@ -219,6 +225,10 @@ public class Dashboard extends javax.swing.JFrame {
         txtUsername.requestFocus();
     }//GEN-LAST:event_cmdUserTypeActionPerformed
 
+    private void psswrdPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psswrdPassActionPerformed
+        btnLogin.doClick();
+    }//GEN-LAST:event_psswrdPassActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,12 +279,12 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void makeFirstAdmin() throws Exception {
         boolean add = false, add2 = false;
-        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "ADMIN", "admin");
+        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
         if (!userController.isExist(userDTO)) {
             add = userController.add(userDTO);
         }
         add = true;
-        UserDTO maintain = new UserDTO(2, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "admin");
+        UserDTO maintain = new UserDTO(2, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
             add2 = userController.addMaintainance(maintain);
         }

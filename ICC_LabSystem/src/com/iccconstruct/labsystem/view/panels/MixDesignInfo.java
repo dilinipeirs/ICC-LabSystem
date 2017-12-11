@@ -72,6 +72,8 @@ public class MixDesignInfo extends javax.swing.JPanel {
         tblConcreteGrade = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(560, 560));
+
         jLabel33.setText("kg");
 
         jLabel34.setText("kg");

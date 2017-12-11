@@ -8,6 +8,7 @@ package com.iccconstruct.labsystem.view;
 import com.iccconstruct.labsystem.view.panels.LoginHistory;
 import com.iccconstruct.labsystem.view.panels.MixDesignInfo;
 import com.iccconstruct.labsystem.view.panels.SystemUsers;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,6 +21,8 @@ public class AdminHome extends javax.swing.JFrame {
      */
     public AdminHome() {
         initComponents();
+        setLocationRelativeTo(null);
+//        setDefaultCloseOperation(JFrame.);
     }
 
     /**
@@ -42,17 +45,9 @@ public class AdminHome extends javax.swing.JFrame {
         btnCreateMix = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 560));
 
-        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
-        pnlContainer.setLayout(pnlContainerLayout);
-        pnlContainerLayout.setHorizontalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlContainerLayout.setVerticalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-        );
+        pnlContainer.setLayout(new java.awt.CardLayout());
 
         jButton7.setText("My Account");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -149,8 +144,8 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34))
@@ -167,7 +162,7 @@ public class AdminHome extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 560, Short.MAX_VALUE)
                         .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -255,14 +250,21 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void navigate(int i) {
         pnlContainer.removeAll();
+        System.out.println("navigating -- removed all");
 
         switch (i) {
             case 0:
                 pnlContainer.add(new MixDesignInfo());
+                System.out.println("mixdesign added");
+                break;
             case 1:
                 pnlContainer.add(new SystemUsers());
+                System.out.println("users added");
+                break;
             case 2:
                 pnlContainer.add(new LoginHistory());
+                System.out.println("log his added");
+                break;
         }
 
         pnlContainer.updateUI();

@@ -30,17 +30,17 @@ public class ConcreteControllerImpl implements ConcreteController {
 
     @Override
     public boolean add(ConcreteWorkDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return concreteDAO.add(dto);
     }
 
     @Override
     public ConcreteWorkDTO search(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return concreteDAO.search(id);
     }
 
     @Override
     public boolean update(ConcreteWorkDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return concreteDAO.update(dto);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ConcreteControllerImpl implements ConcreteController {
 
     @Override
     public boolean isExist(ConcreteWorkDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return concreteDAO.isExist(dto);
     }
 
 }

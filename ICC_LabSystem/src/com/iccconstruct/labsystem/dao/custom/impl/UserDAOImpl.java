@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
     public UserDTO search(String id) throws Exception {
         ArrayList<UserDTO> all = getAll();
         for (UserDTO all1 : all) {
-            if (all1.getUsername().equals(id)||all1.getEpf().equals(id)) {
+            if (all1.getUsername().equals(id) || all1.getEpf().equals(id)) {
                 return all1;
             }
 
@@ -80,6 +80,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean isExist(UserDTO dto) throws Exception {
         ArrayList<UserDTO> all = getAll();
+        if (all == null) {
+            return false;
+        }
         for (UserDTO all1 : all) {
             if (all1.getUsername().equals(dto.getUsername()) && all1.getPassword().equals(dto.getPassword()) && all1.getUserType().equals(dto.getUserType())) {
                 return true;
@@ -90,15 +93,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean addMaintainace(UserDTO maintain) throws Exception{
+    public boolean addMaintainace(UserDTO maintain) throws Exception {
         File file = new File("_data/_user/" + maintain.getUserID() + ".ser");
         file.setReadOnly();
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(maintain);
-        
+
         return file.exists();
-        
+
     }
 
 }

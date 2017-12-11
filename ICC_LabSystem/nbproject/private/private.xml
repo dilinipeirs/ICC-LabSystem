@@ -5,19 +5,9 @@
         <group/>
         <group name="Hibernate">
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/MixDesignInfo.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/FormDTO.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/UserProfile.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/impl/UserDAOImpl.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/MixDesignForm.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/custom/UserController.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/impl/ConcreteDAOImpl.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/ControllerFactory.java</file>
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/main/ICC_LabSystem.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/LoginHistory.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/ConcreteWorkDTO.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/LoginHistoryDTO.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/SuperController.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/SystemUsers.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
         </group>
     </open-files>
 </project-private>

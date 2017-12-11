@@ -30,7 +30,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public boolean add(UserDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userDAO.add(dto);
     }
 
     @Override
