@@ -8,7 +8,9 @@ package com.iccconstruct.labsystem.view;
 import com.iccconstruct.labsystem.view.panels.LoginHistory;
 import com.iccconstruct.labsystem.view.panels.MixDesignInfo;
 import com.iccconstruct.labsystem.view.panels.SystemUsers;
-import javax.swing.JFrame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +24,25 @@ public class AdminHome extends javax.swing.JFrame {
     public AdminHome() {
         initComponents();
         setLocationRelativeTo(null);
-//        setDefaultCloseOperation(JFrame.);
+        this.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                String[] buttons = new String[]{"Yes","No","Log Out"};
+                int confirm = JOptionPane.showOptionDialog(
+                        AdminHome.this, "Are you sure you want to close the Application? Any unsaved data will be lost!",
+                        "Exit Confirmation", 0,
+                        JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1]);
+                
+                if (confirm == 0) {
+                    System.exit(0);
+                }else if(confirm==2){
+                    
+                }
+            }
+
+        });
     }
 
     /**

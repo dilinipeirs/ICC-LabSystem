@@ -5,8 +5,6 @@
  */
 package com.iccconstruct.labsystem.dto;
 
-import java.time.LocalDateTime;
-
 /**
  *
  * @author Dilini Peiris
@@ -14,22 +12,26 @@ import java.time.LocalDateTime;
 public class LoginHistoryDTO extends SuperDTO {
     private int logID;
     private UserDTO dTO;
-    private LocalDateTime logIN;
-    private LocalDateTime logOut;
+    private String logIN;
+    private String logOut;
 
     public LoginHistoryDTO() {
     }
 
-    public LoginHistoryDTO(int logID, UserDTO dTO, LocalDateTime logIN, LocalDateTime logOut) {
+    public LoginHistoryDTO(int logID, UserDTO dTO, String logIN, String logOut) {
         this.logID = logID;
         this.dTO = dTO;
         this.logIN = logIN;
         this.logOut = logOut;
     }
 
-    public LoginHistoryDTO(UserDTO dTO, LocalDateTime logIN) {
+    public LoginHistoryDTO(UserDTO dTO, String logIN) {
         this.dTO = dTO;
         this.logIN = logIN;
+    }
+
+    public LoginHistoryDTO(UserDTO dTO) {
+        this.dTO = dTO;
     }
 
     
@@ -65,28 +67,28 @@ public class LoginHistoryDTO extends SuperDTO {
     /**
      * @return the logIN
      */
-    public LocalDateTime getLogIN() {
+    public String getLogIN() {
         return logIN;
     }
 
     /**
      * @param logIN the logIN to set
      */
-    public void setLogIN(LocalDateTime logIN) {
+    public void setLogIN(String logIN) {
         this.logIN = logIN;
     }
 
     /**
      * @return the logOut
      */
-    public LocalDateTime getLogOut() {
+    public String getLogOut() {
         return logOut;
     }
 
     /**
      * @param logOut the logOut to set
      */
-    public void setLogOut(LocalDateTime logOut) {
+    public void setLogOut(String logOut) {
         this.logOut = logOut;
     }
   

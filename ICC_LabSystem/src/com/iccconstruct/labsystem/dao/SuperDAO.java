@@ -24,7 +24,5 @@ public interface SuperDAO<T extends SuperDTO> {
 
     public boolean delete(String id) throws Exception;
 
-    public int getCount() throws Exception;
-
     public boolean isExist(T dto) throws Exception;
 }

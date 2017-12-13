@@ -9,6 +9,9 @@ import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
 import com.iccconstruct.labsystem.dao.DAOFactory;
 import com.iccconstruct.labsystem.dao.custom.LoginHistoryDAO;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +33,9 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
 
     @Override
     public boolean add(LoginHistoryDTO dto) throws Exception {
+        dto.setLogID(getCount()+1);
+        LocalDateTime now = LocalDateTime.now();
+        dto.setLogIN(now.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
         return historyDAO.add(dto);
     }
 
@@ -40,16 +46,13 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
 
     @Override
     public boolean update(LoginHistoryDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LocalDateTime now = LocalDateTime.now();
+        dto.setLogOut(now.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
+        return historyDAO.update(dto);
     }
 
     @Override
     public int delete(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getCount() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
