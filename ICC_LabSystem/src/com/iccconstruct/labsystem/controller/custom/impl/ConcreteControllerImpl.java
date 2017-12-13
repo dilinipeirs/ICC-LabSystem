@@ -49,11 +49,6 @@ public class ConcreteControllerImpl implements ConcreteController {
     }
 
     @Override
-    public int getCount() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean isExist(ConcreteWorkDTO dto) throws Exception {
         return concreteDAO.isExist(dto);
     }

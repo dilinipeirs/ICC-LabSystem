@@ -203,7 +203,7 @@ public class Dashboard extends javax.swing.JFrame {
             boolean exist = userController.isExist(dTO);
             user = dTO;
             if (exist) {
-                LoginHistoryDTO history = new LoginHistoryDTO(dTO, LocalDateTime.now());
+                LoginHistoryDTO history = new LoginHistoryDTO(dTO);
                 historyController.add(history);
                 if (dTO.getUserType().equals("Admin")) {
                     this.dispose();

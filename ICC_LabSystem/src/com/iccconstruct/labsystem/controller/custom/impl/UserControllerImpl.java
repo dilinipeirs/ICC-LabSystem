@@ -49,11 +49,6 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public int getCount() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean isExist(UserDTO dto) throws Exception {
         return userDAO.isExist(dto);
     }

@@ -73,11 +73,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public int getCount() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean isExist(UserDTO dto) throws Exception {
         ArrayList<UserDTO> all = getAll();
         if (all == null) {

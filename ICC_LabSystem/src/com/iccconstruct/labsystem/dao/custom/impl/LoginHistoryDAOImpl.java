@@ -35,11 +35,11 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean add(LoginHistoryDTO dto) throws Exception {
-        FileOutputStream fos = new FileOutputStream("_data/_loginHis/" + dto.getLogID()+ ".ser");
+        FileOutputStream fos = new FileOutputStream("_data/_loginHis/" + dto.getLogID() + ".ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(dto);
 
-        File file = new File("_data/_loginHis/" + dto.getLogID()+ ".ser");
+        File file = new File("_data/_loginHis/" + dto.getLogID() + ".ser");
         if (file.exists()) {
             return true;
         }
@@ -53,16 +53,14 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean update(LoginHistoryDTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (delete(dto.getLogID()+ "")) {
+            return add(dto);
+        }
+        return false;
     }
 
     @Override
     public boolean delete(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getCount() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
