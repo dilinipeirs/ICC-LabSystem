@@ -5,11 +5,15 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
 import com.iccconstruct.labsystem.view.panels.LoginHistory;
 import com.iccconstruct.labsystem.view.panels.MixDesignInfo;
 import com.iccconstruct.labsystem.view.panels.SystemUsers;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +22,13 @@ import javax.swing.JOptionPane;
  */
 public class AdminHome extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminHome
-     */
+    LoginHistoryController historyController;
+    
     public AdminHome() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
         this.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -38,7 +43,18 @@ public class AdminHome extends javax.swing.JFrame {
                 if (confirm == 0) {
                     System.exit(0);
                 }else if(confirm==2){
-                    
+                    try {
+                        boolean update = historyController.update(Dashboard.history);
+                        if(update){
+                            Dashboard d = new Dashboard();
+                            d.setNewLogin();
+                            d.setVisible(true);
+                        }else{
+                            JOptionPane.showMessageDialog(AdminHome.this, "Cannot Log Out", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(AdminHome.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
 

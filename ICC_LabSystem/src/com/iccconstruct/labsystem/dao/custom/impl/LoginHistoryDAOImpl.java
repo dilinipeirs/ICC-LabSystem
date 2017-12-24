@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -24,7 +25,9 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
     public ArrayList<LoginHistoryDTO> getAll() throws Exception {
         File path = new File("_data/_loginHis");
         File[] listFiles = path.listFiles();
+        System.out.println(Arrays.toString(listFiles));
         ArrayList<LoginHistoryDTO> objs = new ArrayList<>();
+
         for (File file : listFiles) {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -53,7 +56,7 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean update(LoginHistoryDTO dto) throws Exception {
-        if (delete(dto.getLogID()+ "")) {
+        if (delete(dto.getLogID() + "")) {
             return add(dto);
         }
         return false;
@@ -61,7 +64,8 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean delete(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File f = new File("_data/_loginHis/" + id + ".ser");
+        return f.delete();
     }
 
     @Override
