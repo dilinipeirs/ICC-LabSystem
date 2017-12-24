@@ -25,6 +25,7 @@ public class Dashboard extends javax.swing.JFrame {
     UserController userController;
     LoginHistoryController historyController;
     public static UserDTO user;
+    public static LoginHistoryDTO history;
 
     public Dashboard() {
         try {
@@ -203,7 +204,7 @@ public class Dashboard extends javax.swing.JFrame {
             boolean exist = userController.isExist(dTO);
             user = dTO;
             if (exist) {
-                LoginHistoryDTO history = new LoginHistoryDTO(dTO);
+                history = new LoginHistoryDTO(dTO);
                 historyController.add(history);
                 if (dTO.getUserType().equals("Admin")) {
                     this.dispose();
@@ -296,5 +297,10 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(Dashboard.this, "Couldn't define Admin users. Please contact System Administrator", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+    
+    public void setNewLogin(){
+        history = null;
+        user = null;
     }
 }

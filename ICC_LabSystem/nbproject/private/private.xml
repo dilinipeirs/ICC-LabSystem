@@ -5,9 +5,12 @@
         <group/>
         <group name="Hibernate">
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/MixDesignInfo.java</file>
-            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/main/ICC_LabSystem.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/AdminHome.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/custom/impl/LoginHistoryControllerImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/LoginHistory.java</file>
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/SystemUsers.java</file>
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/LoginHistoryDTO.java</file>
         </group>
     </open-files>
 </project-private>
