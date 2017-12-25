@@ -11,7 +11,6 @@ import com.iccconstruct.labsystem.controller.custom.UserController;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
 import com.iccconstruct.labsystem.dto.UserDTO;
 import com.jidesoft.swing.AutoCompletion;
-import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
