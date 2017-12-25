@@ -7,11 +7,14 @@ package com.iccconstruct.labsystem.controller.custom;
 
 import com.iccconstruct.labsystem.controller.SuperController;
 import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
+import java.util.ArrayList;
 
 /**
  *
  * @author Dilini Peiris
  */
 public interface ConcreteController extends SuperController<ConcreteWorkDTO>{
+    public boolean add(ArrayList<ConcreteWorkDTO> dto) throws Exception;
     
+    public ArrayList<String> getPDFs() throws Exception;
 }
