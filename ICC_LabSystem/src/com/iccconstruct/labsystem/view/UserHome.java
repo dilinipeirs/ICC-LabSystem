@@ -29,7 +29,7 @@ public class UserHome extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         btnAccount = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnViewForms = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,11 +49,11 @@ public class UserHome extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("View Mix Design Forms");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnViewForms.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnViewForms.setText("View Mix Design Forms");
+        btnViewForms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnViewFormsActionPerformed(evt);
             }
         });
 
@@ -66,7 +66,7 @@ public class UserHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(269, 269, 269)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewForms, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(278, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -86,7 +86,7 @@ public class UserHome extends javax.swing.JFrame {
                 .addGap(177, 177, 177)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnViewForms, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(286, Short.MAX_VALUE))
         );
 
@@ -101,9 +101,9 @@ public class UserHome extends javax.swing.JFrame {
         new UserProfile().setVisible(true);
     }//GEN-LAST:event_btnAccountActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnViewFormsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewFormsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnViewFormsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,7 +143,7 @@ public class UserHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccount;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnViewForms;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
