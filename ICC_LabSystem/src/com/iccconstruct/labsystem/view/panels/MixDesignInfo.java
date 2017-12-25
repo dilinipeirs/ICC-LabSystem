@@ -403,7 +403,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
-            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), lblWaterCement.getText());
+            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), Double.valueOf(lblWaterCement.getText()));
             if (concreteController.isExist(concreteWorkDTO)) {
                 concreteController.update(concreteWorkDTO);
             } else {

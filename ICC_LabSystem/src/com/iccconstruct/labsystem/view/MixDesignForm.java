@@ -669,7 +669,7 @@ public class MixDesignForm extends javax.swing.JFrame {
             lblCourseAgg.setText(concreteWorkDTO.getCourse_agg() + "");
             lblFineAgg.setText(concreteWorkDTO.getFine_agg() + "");
             lblFlyAsh.setText(concreteWorkDTO.getFly_ash() + "");
-            lblRatio.setText(concreteWorkDTO.getRatio());
+            lblRatio.setText(concreteWorkDTO.getRatio()+"");
             lblSilicaFume.setText(concreteWorkDTO.getSilica_fume() + "");
             lblWater.setText(concreteWorkDTO.getWater() + "");
         } catch (Exception ex) {

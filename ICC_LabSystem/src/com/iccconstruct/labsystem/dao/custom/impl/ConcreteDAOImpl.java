@@ -45,7 +45,7 @@ public class ConcreteDAOImpl implements ConcreteDAO {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(dto);
 
-        File file = new File("_data/_form/" + dto.getConcreteGrade()+ ".ser");
+        File file = new File("_data/_concrete/" + dto.getConcreteGrade()+ ".ser");
         if (file.exists()) {
             return true;
         }

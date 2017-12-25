@@ -18,12 +18,12 @@ public class ConcreteWorkDTO extends SuperDTO{
     private Double course_agg;
     private Double fly_ash;
     private Double silica_fume;
-    private String ratio;
+    private Double ratio;
 
     public ConcreteWorkDTO() {
     }
 
-    public ConcreteWorkDTO(String concreteGrade, Double cement, Double water, Double admix, Double fine_agg, Double course_agg, Double fly_ash, Double silica_fume, String ratio) {
+    public ConcreteWorkDTO(String concreteGrade, Double cement, Double water, Double admix, Double fine_agg, Double course_agg, Double fly_ash, Double silica_fume, Double ratio) {
         this.concreteGrade = concreteGrade;
         this.cement = cement;
         this.water = water;
@@ -150,14 +150,14 @@ public class ConcreteWorkDTO extends SuperDTO{
     /**
      * @return the ratio
      */
-    public String getRatio() {
+    public Double getRatio() {
         return ratio;
     }
 
     /**
      * @param ratio the ratio to set
      */
-    public void setRatio(String ratio) {
+    public void setRatio(Double ratio) {
         this.ratio = ratio;
     }
     
