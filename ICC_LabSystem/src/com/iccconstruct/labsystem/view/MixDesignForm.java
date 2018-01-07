@@ -149,6 +149,11 @@ public class MixDesignForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Concrete Grade :");
 
+        cmbConcreteGrade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbConcreteGradeItemStateChanged(evt);
+            }
+        });
         cmbConcreteGrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbConcreteGradeActionPerformed(evt);
@@ -525,7 +530,7 @@ public class MixDesignForm extends javax.swing.JFrame {
 
         jLabel17.setText("%");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/iccconstruct/labsystem/resources/images/WhatsApp Image 2017-12-25 at 9.12.21 AM.jpeg"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/iccconstruct/labsystem/resources/images/icc-logo.jpeg"))); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Tekton Pro", 1, 18)); // NOI18N
         jLabel20.setText("International Construction Consortium");
@@ -679,20 +684,7 @@ public class MixDesignForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtWaterActionPerformed
 
     private void cmbConcreteGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConcreteGradeActionPerformed
-        try {
-            concreteWorkDTO = concreteController.search(cmbConcreteGrade.getSelectedItem().toString());
-            txtMFineAgg.requestFocus();
-            lblAddMix.setText(concreteWorkDTO.getAdmix() + "");
-            lblCement.setText(concreteWorkDTO.getCement() + "");
-            lblCourseAgg.setText(concreteWorkDTO.getCourse_agg() + "");
-            lblFineAgg.setText(concreteWorkDTO.getFine_agg() + "");
-            lblFlyAsh.setText(concreteWorkDTO.getFly_ash() + "");
-            lblRatio.setText(concreteWorkDTO.getRatio()+"");
-            lblSilicaFume.setText(concreteWorkDTO.getSilica_fume() + "");
-            lblWater.setText(concreteWorkDTO.getWater() + "");
-        } catch (Exception ex) {
-            Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_cmbConcreteGradeActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -708,6 +700,29 @@ public class MixDesignForm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void cmbConcreteGradeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbConcreteGradeItemStateChanged
+        try {
+            System.out.println("item state changed");
+            System.out.println(cmbConcreteGrade.getSelectedItem().toString());
+            concreteWorkDTO = concreteController.search(cmbConcreteGrade.getSelectedItem().toString());
+            System.out.println(concreteWorkDTO);
+            
+            lblAddMix.setText(concreteWorkDTO.getAdmix() + "");
+            lblCement.setText(concreteWorkDTO.getCement() + "");
+            lblCourseAgg.setText(concreteWorkDTO.getCourse_agg() + "");
+            lblFineAgg.setText(concreteWorkDTO.getFine_agg() + "");
+            System.out.println("item state changed");
+            lblFlyAsh.setText(concreteWorkDTO.getFly_ash() + "");
+            lblRatio.setText(concreteWorkDTO.getRatio()+"");
+            lblSilicaFume.setText(concreteWorkDTO.getSilica_fume() + "");
+            lblWater.setText(concreteWorkDTO.getWater() + "");
+            txtMFineAgg.requestFocus();
+            System.out.println("item state changed");
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbConcreteGradeItemStateChanged
 
     /**
      * @param args the command line arguments

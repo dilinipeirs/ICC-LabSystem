@@ -118,7 +118,7 @@ public class ViewMixDesigns extends javax.swing.JFrame {
             System.out.println("clicked : " + valueAt);
 
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-            URL resource = contextClassLoader.getResource("_data/_concrete/"+valueAt+".pdf");
+            URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt+".pdf");
             Desktop.getDesktop().open(new File(resource.toURI()));
 
 //            Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "

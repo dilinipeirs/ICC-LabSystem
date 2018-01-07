@@ -9,7 +9,8 @@ package com.iccconstruct.labsystem.dto;
  *
  * @author Dilini Peiris
  */
-public class ConcreteWorkDTO extends SuperDTO{
+public class ConcreteWorkDTO extends SuperDTO {
+
     private String concreteGrade;
     private Double cement;
     private Double water;
@@ -160,6 +161,10 @@ public class ConcreteWorkDTO extends SuperDTO{
     public void setRatio(Double ratio) {
         this.ratio = ratio;
     }
-    
-    
+
+//    @Override
+//    public String toString() {
+//        return getConcreteGrade() + " " + getCement();
+//    }
+
 }

@@ -222,6 +222,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbConcreteGradeItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbConcreteGradeActionPerformed"/>
       </Events>
     </Component>
@@ -875,7 +876,7 @@
     <Component class="javax.swing.JLabel" name="jLabel18">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/iccconstruct/labsystem/resources/images/WhatsApp Image 2017-12-25 at 9.12.21 AM.jpeg"/>
+          <Image iconType="3" name="/com/iccconstruct/labsystem/resources/images/icc-logo.jpeg"/>
         </Property>
       </Properties>
     </Component>

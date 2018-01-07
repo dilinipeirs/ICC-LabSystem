@@ -75,9 +75,18 @@ public class SystemUsers extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title", "Name", "EPF Number"
+                "Emp No", "Title", "Name", "EPF Number"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblUsers.getTableHeader().setReorderingAllowed(false);
         tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblUsersMouseClicked(evt);
@@ -380,7 +389,10 @@ public class SystemUsers extends javax.swing.JPanel {
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         try {
-            UserDTO search = controller.search((String) tblUsers.getValueAt(tblUsers.getSelectedRow(), 2));
+            UserDTO search = controller.search( tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+            System.out.println(search.getTitle());
+            System.out.println(search.getFname()+search.getLname());
+            
             cmbTitle.setSelectedItem(search.getTitle());
             txtDesignation.setText(search.getDesignation());
             txtEPF.setText(search.getEpf());
@@ -441,7 +453,7 @@ public class SystemUsers extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tblUsers.getModel();
         dtm.setRowCount(0);
         for (UserDTO all1 : all) {
-            Object[] rowData = {all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
+            Object[] rowData = {all1.getUserID(),all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
             dtm.addRow(rowData);
         }
     }
