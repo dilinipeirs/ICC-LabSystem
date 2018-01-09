@@ -7,15 +7,15 @@ package com.iccconstruct.labsystem.view;
 
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.ConcreteController;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.icepdf.ri.common.ComponentKeyBinding;
+import org.icepdf.ri.common.SwingController;
+import org.icepdf.ri.common.SwingViewBuilder;
 
 /**
  *
@@ -118,23 +118,12 @@ public class ViewMixDesigns extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblConcreteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblConcreteMouseClicked
-        try {
-            String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
-            System.out.println("clicked : " + valueAt);
 
-            ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-            URL resource = contextClassLoader.getResource("/src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt+".pdf");
-            File file = new File(resource.toURI());
-            System.out.println(file.getName());
-            Desktop.getDesktop().open(file);
+        String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
+        System.out.println("clicked : " + valueAt);
 
-//            Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-//                    + "_data/_concrete/"+valueAt+".pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(ViewMixDesigns.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ViewMixDesigns.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String file = "src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt;
+        openPDF(file,valueAt);
     }//GEN-LAST:event_tblConcreteMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -191,5 +180,36 @@ public class ViewMixDesigns extends javax.swing.JFrame {
             dtm.addRow(rowData);
         }
 
+    }
+
+    private void openPDF(String filepath,String filename) {
+
+// build a controller
+        SwingController controller = new SwingController();
+        // Build a SwingViewFactory configured with the controller
+        SwingViewBuilder factory = new SwingViewBuilder(controller);
+
+        JPanel viewerComponentPanel = factory.buildViewerPanel();
+
+// add copy keyboard command
+        ComponentKeyBinding.install(controller, viewerComponentPanel);
+
+        // add interactive mouse link annotation support via callback
+        controller.getDocumentViewController().setAnnotationCallback(
+                new org.icepdf.ri.common.MyAnnotationCallback(
+                        controller.getDocumentViewController()));
+
+// Use the factory to build a JPanel that is pre-configured
+//with a complete, active Viewer UI.
+// Create a JFrame to display the panel in
+        JFrame window = new JFrame("PDF Viewer - "+filename);
+
+        window.getContentPane().add(viewerComponentPanel);
+        window.pack();
+
+        window.setVisible(true);
+
+        // Open a PDF document to view
+        controller.openDocument(filepath);
     }
 }
