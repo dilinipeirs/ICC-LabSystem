@@ -7,8 +7,10 @@ package com.iccconstruct.labsystem.view;
 
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
+import com.iccconstruct.labsystem.view.panels.DatabaseBackup;
 import com.iccconstruct.labsystem.view.panels.LoginHistory;
 import com.iccconstruct.labsystem.view.panels.MixDesignInfo;
+import com.iccconstruct.labsystem.view.panels.MixDesignPDFs;
 import com.iccconstruct.labsystem.view.panels.SystemUsers;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -23,33 +25,33 @@ import javax.swing.JOptionPane;
 public class AdminHome extends javax.swing.JFrame {
 
     LoginHistoryController historyController;
-    
+
     public AdminHome() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
         this.addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
                 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-                String[] buttons = new String[]{"Yes","No","Log Out"};
+                String[] buttons = new String[]{"Yes", "No", "Log Out"};
                 int confirm = JOptionPane.showOptionDialog(
                         AdminHome.this, "Are you sure you want to close the Application? Any unsaved data will be lost!",
                         "Exit Confirmation", 0,
                         JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1]);
-                
+
                 if (confirm == 0) {
                     System.exit(0);
-                }else if(confirm==2){
+                } else if (confirm == 2) {
                     try {
                         boolean update = historyController.update(Dashboard.history);
-                        if(update){
+                        if (update) {
                             Dashboard d = new Dashboard();
                             d.setNewLogin();
                             d.setVisible(true);
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(AdminHome.this, "Cannot Log Out", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (Exception ex) {
@@ -79,6 +81,7 @@ public class AdminHome extends javax.swing.JFrame {
         btnLoginHis = new javax.swing.JButton();
         btnDBbackup = new javax.swing.JButton();
         btnCreateMix = new javax.swing.JButton();
+        btnManagePDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 560));
@@ -128,7 +131,7 @@ public class AdminHome extends javax.swing.JFrame {
         });
 
         btnDBbackup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDBbackup.setText("Database Backup");
+        btnDBbackup.setText("Database Backup/Restore");
         btnDBbackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDBbackupActionPerformed(evt);
@@ -143,18 +146,27 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
+        btnManagePDF.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnManagePDF.setText("Mix Design PDFs");
+        btnManagePDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMixDesigns, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViewUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateMix, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoginHis, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDBbackup, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManagePDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMixDesigns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnViewUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateMix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLoginHis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDBbackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +175,9 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(btnMixDesigns, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCreateMix, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManagePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
                 .addComponent(btnViewUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLoginHis, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +194,7 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +236,7 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginHisActionPerformed
 
     private void btnDBbackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDBbackupActionPerformed
-        // TODO add your handling code here:
+        navigate(4);
     }//GEN-LAST:event_btnDBbackupActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -236,6 +250,10 @@ public class AdminHome extends javax.swing.JFrame {
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnManagePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePDFActionPerformed
+        navigate(3);
+    }//GEN-LAST:event_btnManagePDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,6 +295,7 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JButton btnDBbackup;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLoginHis;
+    private javax.swing.JButton btnManagePDF;
     private javax.swing.JButton btnMixDesigns;
     private javax.swing.JButton btnViewUsers;
     private javax.swing.JButton jButton7;
@@ -300,6 +319,14 @@ public class AdminHome extends javax.swing.JFrame {
             case 2:
                 pnlContainer.add(new LoginHistory());
                 System.out.println("log his added");
+                break;
+            case 3:
+                pnlContainer.add(new MixDesignPDFs());
+                System.out.println("manage pdf added");
+                break;
+            case 4:
+                pnlContainer.add(new DatabaseBackup());
+                System.out.println("backup added");
                 break;
         }
 
