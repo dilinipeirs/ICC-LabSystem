@@ -41,12 +41,14 @@ public class AdminHome extends javax.swing.JFrame {
                         AdminHome.this, "Are you sure you want to close the Application? Any unsaved data will be lost!",
                         "Exit Confirmation", 0,
                         JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1]);
-
+                System.out.println(confirm);
                 if (confirm == 0) {
                     System.exit(0);
                 } else if (confirm == 2) {
                     try {
+                        System.out.println(Dashboard.history);
                         boolean update = historyController.update(Dashboard.history);
+                        
                         if (update) {
                             Dashboard d = new Dashboard();
                             d.setNewLogin();

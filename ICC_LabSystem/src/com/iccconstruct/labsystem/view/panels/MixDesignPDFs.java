@@ -13,9 +13,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.apache.commons.io.FileUtils;
+import org.icepdf.ri.common.ComponentKeyBinding;
+import org.icepdf.ri.common.SwingController;
+import org.icepdf.ri.common.SwingViewBuilder;
 
 /**
  *
@@ -184,8 +189,9 @@ public class MixDesignPDFs extends javax.swing.JPanel {
                 System.out.println("clicked : " + valueAt);
                 File f = new File("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt);
                 boolean delete = f.delete();
-                if(!delete)
+                if (!delete) {
                     JOptionPane.showMessageDialog(MixDesignPDFs.this, "Deleting not successful", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 loadMixDesigns();
             } catch (Exception ex) {
                 Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,7 +202,7 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     private void btnChoosePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePDFActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        
+
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("You chose to open this file: "
@@ -207,7 +213,7 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     }//GEN-LAST:event_btnChoosePDFActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        try {
+        
             if (tblConcrete.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(MixDesignPDFs.this, "Please Select a PDF to open", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -218,16 +224,16 @@ public class MixDesignPDFs extends javax.swing.JPanel {
 //                URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt);
 //                Desktop.getDesktop().open(new File(resource.toURI()));
                 System.out.println("opening");
-                 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-                                + "src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
-                 System.out.println("opened");
+//                 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+//                                + "src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
+                openPDF("src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
+
+                System.out.println("opened");
 
             }
 
             //           
-        } catch (IOException ex) {
-            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
 //        } catch (URISyntaxException ex) {
 //            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -254,4 +260,35 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     private javax.swing.JTable tblConcrete;
     private javax.swing.JTextField txtPath;
     // End of variables declaration//GEN-END:variables
+
+    private void openPDF(String filepath) {
+      
+// build a controller
+        SwingController controller = new SwingController();
+        // Build a SwingViewFactory configured with the controller
+        SwingViewBuilder factory = new SwingViewBuilder(controller);
+
+        JPanel viewerComponentPanel = factory.buildViewerPanel();
+
+// add copy keyboard command
+        ComponentKeyBinding.install(controller, viewerComponentPanel);
+
+ // add interactive mouse link annotation support via callback
+        controller.getDocumentViewController().setAnnotationCallback(
+                new org.icepdf.ri.common.MyAnnotationCallback(
+                        controller.getDocumentViewController()));
+
+// Use the factory to build a JPanel that is pre-configured
+//with a complete, active Viewer UI.
+// Create a JFrame to display the panel in
+        JFrame window = new JFrame("Metrics Wizard Help");
+
+        window.getContentPane().add(viewerComponentPanel);
+        window.pack();
+
+        window.setVisible(true);
+
+        // Open a PDF document to view
+        controller.openDocument(filepath);
+    }
 }
