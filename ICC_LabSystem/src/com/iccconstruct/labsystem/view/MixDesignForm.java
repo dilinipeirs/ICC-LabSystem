@@ -12,6 +12,8 @@ import com.iccconstruct.labsystem.dto.ConcreteWorkDTO;
 import com.iccconstruct.labsystem.dto.FormDTO;
 import com.jidesoft.swing.AutoCompletion;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -707,14 +710,14 @@ public class MixDesignForm extends javax.swing.JFrame {
             System.out.println(cmbConcreteGrade.getSelectedItem().toString());
             concreteWorkDTO = concreteController.search(cmbConcreteGrade.getSelectedItem().toString());
             System.out.println(concreteWorkDTO);
-            
+
             lblAddMix.setText(concreteWorkDTO.getAdmix() + "");
             lblCement.setText(concreteWorkDTO.getCement() + "");
             lblCourseAgg.setText(concreteWorkDTO.getCourse_agg() + "");
             lblFineAgg.setText(concreteWorkDTO.getFine_agg() + "");
             System.out.println("item state changed");
             lblFlyAsh.setText(concreteWorkDTO.getFly_ash() + "");
-            lblRatio.setText(concreteWorkDTO.getRatio()+"");
+            lblRatio.setText(concreteWorkDTO.getRatio() + "");
             lblSilicaFume.setText(concreteWorkDTO.getSilica_fume() + "");
             lblWater.setText(concreteWorkDTO.getWater() + "");
             txtMFineAgg.requestFocus();
@@ -835,9 +838,16 @@ public class MixDesignForm extends javax.swing.JFrame {
         LocalDate date = LocalDate.now();
         lblDate.setText(date.toString());
 
-        LocalTime time = LocalTime.now();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("hh:mm:ss");
-        lblTime.setText(format.format(time));
+        new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                LocalTime time = LocalTime.now();
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("hh:mm:ss");
+                lblTime.setText(format.format(time));
+            }
+
+        }).start();
+
     }
 
     private void setConcrete() throws Exception {

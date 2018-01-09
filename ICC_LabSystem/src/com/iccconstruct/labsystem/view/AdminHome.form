@@ -30,7 +30,7 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="320" max="32767" attributes="0"/>
+                      <EmptySpace pref="316" max="32767" attributes="0"/>
                       <Component id="jButton7" min="-2" pref="134" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnLogOut" min="-2" pref="87" max="-2" attributes="0"/>
@@ -106,11 +106,11 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnManagePDF" max="32767" attributes="0"/>
-                      <Component id="btnMixDesigns" pref="209" max="32767" attributes="0"/>
-                      <Component id="btnViewUsers" alignment="0" pref="209" max="32767" attributes="0"/>
-                      <Component id="btnCreateMix" alignment="0" pref="209" max="32767" attributes="0"/>
-                      <Component id="btnLoginHis" alignment="0" pref="209" max="32767" attributes="0"/>
-                      <Component id="btnDBbackup" alignment="0" pref="209" max="32767" attributes="0"/>
+                      <Component id="btnMixDesigns" max="32767" attributes="0"/>
+                      <Component id="btnViewUsers" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnCreateMix" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnLoginHis" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnDBbackup" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -174,7 +174,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Database Backup"/>
+            <Property name="text" type="java.lang.String" value="Database Backup/Restore"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDBbackupActionPerformed"/>

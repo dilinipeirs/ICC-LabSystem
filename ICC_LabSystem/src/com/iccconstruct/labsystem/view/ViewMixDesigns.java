@@ -51,6 +51,11 @@ public class ViewMixDesigns extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tblConcrete.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,8 +123,10 @@ public class ViewMixDesigns extends javax.swing.JFrame {
             System.out.println("clicked : " + valueAt);
 
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-            URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt+".pdf");
-            Desktop.getDesktop().open(new File(resource.toURI()));
+            URL resource = contextClassLoader.getResource("/src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt+".pdf");
+            File file = new File(resource.toURI());
+            System.out.println(file.getName());
+            Desktop.getDesktop().open(file);
 
 //            Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
 //                    + "_data/_concrete/"+valueAt+".pdf");
@@ -129,6 +136,10 @@ public class ViewMixDesigns extends javax.swing.JFrame {
             Logger.getLogger(ViewMixDesigns.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tblConcreteMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

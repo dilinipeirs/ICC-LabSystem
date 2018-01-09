@@ -20,17 +20,19 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
  * @author Dilini Peiris
  */
 public class MixDesignPDFs extends javax.swing.JPanel {
+
     ConcreteController concreteController;
-    
+
     public MixDesignPDFs() {
         initComponents();
-        concreteController=(ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
+        concreteController = (ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
         try {
             loadMixDesigns();
         } catch (Exception ex) {
@@ -119,19 +121,22 @@ public class MixDesignPDFs extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPath)
-                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnChoosePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnOpen, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(btnRemove)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPath, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnChoosePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnOpen))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(44, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,14 +148,14 @@ public class MixDesignPDFs extends javax.swing.JPanel {
                         .addComponent(btnChoosePDF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(btnUpload)
-                        .addGap(17, 17, 17)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRemove)
-                            .addComponent(btnOpen))
+                            .addComponent(btnOpen)
+                            .addComponent(btnRemove))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
                 .addContainerGap())
@@ -163,19 +168,40 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     }//GEN-LAST:event_tblConcreteMouseClicked
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
-
+        File file = new File(txtPath.getText());
+        try {
+            FileUtils.copyFileToDirectory(file, new File("src/com/iccconstruct/labsystem/resources/pdf-mix designs/"));
+            loadMixDesigns();
+        } catch (IOException ex) {
+            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnUploadActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
+        if (tblConcrete.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(MixDesignPDFs.this, "Please select a PDF to remove", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
+                System.out.println("clicked : " + valueAt);
+                File f = new File("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt);
+                boolean delete = f.delete();
+                if(!delete)
+                    JOptionPane.showMessageDialog(MixDesignPDFs.this, "Deleting not successful", "Error", JOptionPane.ERROR_MESSAGE);
+                loadMixDesigns();
+            } catch (Exception ex) {
+                Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChoosePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChoosePDFActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF", ".pdf");
-        chooser.setFileFilter(filter);
+        
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("You chose to open this file: "
@@ -193,25 +219,29 @@ public class MixDesignPDFs extends javax.swing.JPanel {
                 String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
                 System.out.println("clicked : " + valueAt);
 
-                ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-                URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt + ".pdf");
-                Desktop.getDesktop().open(new File(resource.toURI()));
+//                ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+//                URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt);
+//                Desktop.getDesktop().open(new File(resource.toURI()));
+                System.out.println("opening");
+                 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
+                                + "src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
+                 System.out.println("opened");
 
             }
 
-            //            Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-            //                    + "_data/_concrete/"+valueAt+".pdf");
+            //           
         } catch (IOException ex) {
             Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        } catch (URISyntaxException ex) {
+//            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnOpenActionPerformed
 
-    
     private void loadMixDesigns() throws Exception {
         ArrayList<String> all = concreteController.getPDFs();
         DefaultTableModel dtm = (DefaultTableModel) tblConcrete.getModel();
+        dtm.setRowCount(0);
         for (String all1 : all) {
             Object[] rowData = {all1};
             dtm.addRow(rowData);
