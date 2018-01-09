@@ -5,6 +5,7 @@
  */
 package com.iccconstruct.labsystem.view.panels;
 
+import java.time.LocalDate;
 import javax.swing.JFileChooser;
 
 /**
@@ -141,11 +142,13 @@ public class DatabaseBackup extends javax.swing.JPanel {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogType(JFileChooser.OPEN_DIALOG);
 
-        int returnVal = chooser.showOpenDialog(this);
+        int returnVal = chooser.showSaveDialog(this);
+        LocalDate date = LocalDate.now();
+        String filename = "icc-labsystem-database backup-" + date.toString() + ".zip";
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set backup location: "
                     + chooser.getCurrentDirectory().getPath());
-            txtBackup.setText(chooser.getCurrentDirectory().getPath());
+            txtBackup.setText(chooser.getCurrentDirectory().getPath()+filename);
 
         }
 
@@ -156,7 +159,16 @@ public class DatabaseBackup extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackupActionPerformed
 
     private void btnBrowse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowse2ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogType(JFileChooser.OPEN_DIALOG);
+
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("set restore db: "
+                    + chooser.getCurrentDirectory().getPath());
+            txtRestore.setText(chooser.getCurrentDirectory().getPath());
+
+        }
     }//GEN-LAST:event_btnBrowse2ActionPerformed
 
     private void txtRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRestoreActionPerformed

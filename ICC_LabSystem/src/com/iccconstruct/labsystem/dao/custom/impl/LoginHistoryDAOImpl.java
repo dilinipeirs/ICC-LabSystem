@@ -44,6 +44,7 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
         File file = new File("_data/_loginHis/" + dto.getLogID() + ".ser");
         if (file.exists()) {
+            System.out.println("added successful");
             return true;
         }
         return false;
@@ -56,7 +57,9 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
 
     @Override
     public boolean update(LoginHistoryDTO dto) throws Exception {
+        System.out.println(dto.toString());
         if (delete(dto.getLogID() + "")) {
+            System.out.println("delete successful");
             return add(dto);
         }
         return false;

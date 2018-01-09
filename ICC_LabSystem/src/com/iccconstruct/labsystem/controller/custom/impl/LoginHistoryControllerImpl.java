@@ -48,6 +48,7 @@ public class LoginHistoryControllerImpl implements LoginHistoryController {
     public boolean update(LoginHistoryDTO dto) throws Exception {
         LocalDateTime now = LocalDateTime.now();
         dto.setLogOut(now.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
+        System.out.println("log out time :"+dto.getLogOut());
         return historyDAO.update(dto);
     }
 
