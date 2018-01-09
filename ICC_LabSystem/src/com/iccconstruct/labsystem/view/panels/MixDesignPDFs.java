@@ -7,18 +7,13 @@ package com.iccconstruct.labsystem.view.panels;
 
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.ConcreteController;
-import com.iccconstruct.labsystem.view.MixDesignForm;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.apache.commons.io.FileUtils;
 
