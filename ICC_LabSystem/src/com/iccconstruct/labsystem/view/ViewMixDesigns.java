@@ -29,6 +29,9 @@ public class ViewMixDesigns extends javax.swing.JFrame {
         try {
             initComponents();
             setLocationRelativeTo(null);
+            setIconImage(Dashboard.image.getImage());
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setTitle("ICC - Lab System - Mix Designs");
             concreteController = (ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
             loadMixDesigns();
         } catch (Exception ex) {

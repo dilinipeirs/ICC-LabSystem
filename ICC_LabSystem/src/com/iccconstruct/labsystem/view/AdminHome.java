@@ -29,7 +29,8 @@ public class AdminHome extends javax.swing.JFrame {
     public AdminHome() {
         initComponents();
         setLocationRelativeTo(null);
-
+        setIconImage(Dashboard.image.getImage());
+        setTitle("ICC - Lab System - Administrator");
         historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
         this.addWindowListener(new WindowAdapter() {
 
@@ -48,7 +49,7 @@ public class AdminHome extends javax.swing.JFrame {
                     try {
                         System.out.println(Dashboard.history);
                         boolean update = historyController.update(Dashboard.history);
-                        
+
                         if (update) {
                             Dashboard d = new Dashboard();
                             d.setNewLogin();
