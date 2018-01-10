@@ -26,6 +26,8 @@ public class UserProfile extends javax.swing.JFrame {
     public UserProfile() {
         initComponents();
         setDetails();
+        setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setIconImage(Dashboard.image.getImage());
         setTitle("ICC - Lab System - Account Information");

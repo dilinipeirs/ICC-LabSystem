@@ -29,6 +29,7 @@ public class ViewMixDesigns extends javax.swing.JFrame {
         try {
             initComponents();
             setLocationRelativeTo(null);
+            setResizable(false);
             setIconImage(Dashboard.image.getImage());
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setTitle("ICC - Lab System - Mix Designs");

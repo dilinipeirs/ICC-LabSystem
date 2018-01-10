@@ -31,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             initComponents();
             setLocationRelativeTo(null);
+            setResizable(false);
             txtUsername.requestFocus();
             setIconImage(image.getImage());
             setTitle("ICC - Lab System");
@@ -329,7 +330,7 @@ public class Dashboard extends javax.swing.JFrame {
             add = userController.add(userDTO);
         }
         add = true;
-        UserDTO maintain = new UserDTO(2, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
+        UserDTO maintain = new UserDTO(0, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
             add2 = userController.addMaintainance(maintain);
         }
