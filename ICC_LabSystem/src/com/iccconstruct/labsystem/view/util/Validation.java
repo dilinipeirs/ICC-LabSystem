@@ -44,7 +44,7 @@ public class Validation {
         }
     }
 
-    public static void validateEmail(JTextField txt) {
+    public static boolean validateEmail(JTextField txt) {
         String regex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^"
                 + "_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23"
                 + "-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*"
@@ -55,7 +55,23 @@ public class Validation {
                 + "53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
         if (!txt.getText().matches(regex)) {
             txt.requestFocus();
+            return false;
+        } else {
+            return true;
+
         }
+    }
+    
+    public static boolean validateTel(JTextField txt){
+      String regex = " \\d{3}-\\d{7}";
+        if (!txt.getText().matches(regex)) {
+            txt.requestFocus();
+            return false;
+        } else {
+            return true;
+
+        }
+       
     }
 
 }

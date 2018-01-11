@@ -420,26 +420,33 @@ public class SystemUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try {
-            UserDTO dTO = new UserDTO(cmbTitle.getSelectedItem().toString(), txtEPF.getText(), txtFname.getText(), txtLname.getText(), txtDesignation.getText(), txtOfficeMail.getText(), txtPersonalMail.getText(), txtTel.getText(), txtUsername.getText(), String.valueOf(pswrd.getPassword()), cmbUserType.getSelectedItem().toString());
-            if (controller.isExist(dTO)) {
-                boolean update = controller.update(dTO);
-                if (update) {
-                    setUsers();
+
+        if (Validation.validateEmail(txtOfficeMail) || Validation.validateEmail(txtPersonalMail) || Validation.validateTel(txtTel)) {
+            try {
+                UserDTO dTO = new UserDTO(cmbTitle.getSelectedItem().toString(), txtEPF.getText(), txtFname.getText(), txtLname.getText(), txtDesignation.getText(), txtOfficeMail.getText(), txtPersonalMail.getText(), txtTel.getText(), txtUsername.getText(), String.valueOf(pswrd.getPassword()), cmbUserType.getSelectedItem().toString());
+                if (controller.isExist(dTO)) {
+                    boolean update = controller.update(dTO);
+                    if (update) {
+                        setUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Cannot update User details", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Cannot update User details", "Error", JOptionPane.ERROR_MESSAGE);
+                    boolean add = controller.add(dTO);
+                    if (add) {
+                        setUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Cannot Add new user", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            } else {
-                boolean add = controller.add(dTO);
-                if (add) {
-                    setUsers();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Cannot Add new user", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(SystemUsers.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(SystemUsers.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please recheck Contact number, Office and Personal emails", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
