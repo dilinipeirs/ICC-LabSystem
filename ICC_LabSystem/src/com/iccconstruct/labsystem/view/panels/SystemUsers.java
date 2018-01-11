@@ -8,9 +8,11 @@ package com.iccconstruct.labsystem.view.panels;
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.UserController;
 import com.iccconstruct.labsystem.dto.UserDTO;
+import com.iccconstruct.labsystem.view.util.Validation;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -64,9 +66,14 @@ public class SystemUsers extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         pswrd = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
-        txtUserType = new javax.swing.JTextField();
-        btnNew = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
+        cmbUserType = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(560, 560));
 
@@ -137,10 +144,20 @@ public class SystemUsers extends javax.swing.JPanel {
                 txtFnameActionPerformed(evt);
             }
         });
+        txtFname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFnameKeyReleased(evt);
+            }
+        });
 
         txtLname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLnameActionPerformed(evt);
+            }
+        });
+        txtLname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLnameKeyReleased(evt);
             }
         });
 
@@ -178,7 +195,7 @@ public class SystemUsers extends javax.swing.JPanel {
             }
         });
 
-        cmbTitle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr.", "Mrs.Miss." }));
+        cmbTitle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr.", "Mrs.", "Miss." }));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -194,9 +211,10 @@ public class SystemUsers extends javax.swing.JPanel {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("User Type :");
 
-        txtUserType.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save Changes");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserTypeActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -207,23 +225,18 @@ public class SystemUsers extends javax.swing.JPanel {
             }
         });
 
-        btnSave.setText("Save Changes");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
+        cmbUserType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "User" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,21 +249,22 @@ public class SystemUsers extends javax.swing.JPanel {
                                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEPF, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(txtFname)
-                            .addComponent(txtLname)
-                            .addComponent(txtDesignation)
-                            .addComponent(txtOfficeMail)
-                            .addComponent(txtPersonalMail)
-                            .addComponent(txtTel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbTitle, 0, 170, Short.MAX_VALUE)
-                            .addComponent(pswrd)
-                            .addComponent(txtUserType)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pswrd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPersonalMail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOfficeMail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDesignation, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLname, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFname, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEPF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbTitle, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbUserType, 0, 114, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(btnNew)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSave)))
                 .addContainerGap())
         );
@@ -298,14 +312,24 @@ public class SystemUsers extends javax.swing.JPanel {
                     .addComponent(jLabel16)
                     .addComponent(pswrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(txtUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNew)
-                    .addComponent(btnSave)))
+                    .addComponent(jLabel15)
+                    .addComponent(cmbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnNew)))
         );
+
+        jLabel1.setText("To add a new user :");
+
+        jLabel2.setText("1) Click on Register New User to clear");
+
+        jLabel3.setText("2) Fill in the details of the new user");
+
+        jLabel4.setText("3) Save Changes");
+
+        jLabel5.setText(" the text boxes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -313,10 +337,20 @@ public class SystemUsers extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,8 +358,19 @@ public class SystemUsers extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -371,28 +416,45 @@ public class SystemUsers extends javax.swing.JPanel {
         txtPersonalMail.setText("");
         txtTel.setText("");
         txtUsername.setText("");
-        txtUserType.setText("");
+        cmbUserType.setSelectedItem("User");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try {
-            UserDTO dTO = new UserDTO(cmbTitle.getSelectedItem().toString(), txtEPF.getText(), txtFname.getText(), txtLname.getText(), txtDesignation.getText(), txtOfficeMail.getText(), txtPersonalMail.getText(), txtTel.getText(), txtUsername.getText(), String.valueOf(pswrd.getPassword()), txtUserType.getText());
-            if (controller.isExist(dTO)) {
-                controller.update(dTO);
-            } else {
-                controller.add(dTO);
+
+        if (Validation.validateEmail(txtOfficeMail) || Validation.validateEmail(txtPersonalMail) || Validation.validateTel(txtTel)) {
+            try {
+                UserDTO dTO = new UserDTO(cmbTitle.getSelectedItem().toString(), txtEPF.getText(), txtFname.getText(), txtLname.getText(), txtDesignation.getText(), txtOfficeMail.getText(), txtPersonalMail.getText(), txtTel.getText(), txtUsername.getText(), String.valueOf(pswrd.getPassword()), cmbUserType.getSelectedItem().toString());
+                if (controller.isExist(dTO)) {
+                    boolean update = controller.update(dTO);
+                    if (update) {
+                        setUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Cannot update User details", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    boolean add = controller.add(dTO);
+                    if (add) {
+                        setUsers();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Cannot Add new user", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(SystemUsers.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(SystemUsers.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please recheck Contact number, Office and Personal emails", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         try {
-            UserDTO search = controller.search( tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+            UserDTO search = controller.search(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
             System.out.println(search.getTitle());
-            System.out.println(search.getFname()+search.getLname());
-            
+            System.out.println(search.getFname() + search.getLname());
+
             cmbTitle.setSelectedItem(search.getTitle());
             txtDesignation.setText(search.getDesignation());
             txtEPF.setText(search.getEpf());
@@ -403,7 +465,7 @@ public class SystemUsers extends javax.swing.JPanel {
             txtPersonalMail.setText(search.getPersonalMail());
             txtTel.setText(search.getContact());
             txtUsername.setText(search.getUsername());
-            txtUserType.setText(search.getUserType());
+            cmbUserType.setSelectedItem(search.getUserType());
         } catch (Exception ex) {
             Logger.getLogger(SystemUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -413,15 +475,21 @@ public class SystemUsers extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_pswrdActionPerformed
 
-    private void txtUserTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserTypeActionPerformed
+    private void txtFnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFnameKeyReleased
+        Validation.lettersOnly(evt);
+    }//GEN-LAST:event_txtFnameKeyReleased
+
+    private void txtLnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLnameKeyReleased
+        Validation.lettersOnly(evt);
+    }//GEN-LAST:event_txtLnameKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cmbTitle;
+    private javax.swing.JComboBox cmbUserType;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -429,6 +497,10 @@ public class SystemUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -444,7 +516,6 @@ public class SystemUsers extends javax.swing.JPanel {
     private javax.swing.JTextField txtOfficeMail;
     private javax.swing.JTextField txtPersonalMail;
     private javax.swing.JTextField txtTel;
-    private javax.swing.JTextField txtUserType;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
@@ -453,7 +524,7 @@ public class SystemUsers extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tblUsers.getModel();
         dtm.setRowCount(0);
         for (UserDTO all1 : all) {
-            Object[] rowData = {all1.getUserID(),all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
+            Object[] rowData = {all1.getUserID(), all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
             dtm.addRow(rowData);
         }
     }

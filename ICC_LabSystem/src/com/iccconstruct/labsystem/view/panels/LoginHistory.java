@@ -8,11 +8,16 @@ package com.iccconstruct.labsystem.view.panels;
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
 import com.iccconstruct.labsystem.dto.LoginHistoryDTO;
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class LoginHistory extends javax.swing.JPanel {
 
     LoginHistoryController historyController;
-    
+
     public LoginHistory() {
         try {
             initComponents();
@@ -53,7 +58,22 @@ public class LoginHistory extends javax.swing.JPanel {
             new String [] {
                 "Login Entry", "Username", "Name", "Log  In Time", "Log Out Time"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblLoginHis);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -82,15 +102,30 @@ public class LoginHistory extends javax.swing.JPanel {
 
     private void setHistory() throws Exception {
         ArrayList<LoginHistoryDTO> all = historyController.getAll();
-        if(all==null){
+        if (all == null) {
             JOptionPane.showMessageDialog(LoginHistory.this, "There are no login details to display", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        DefaultTableModel dtm =(DefaultTableModel) tblLoginHis.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tblLoginHis.getModel();
         dtm.setRowCount(0);
         for (LoginHistoryDTO all1 : all) {
-            Object[] rowData = {all1.getLogID(),all1.getdTO().getUsername(),all1.getdTO().getFname()+all1.getdTO().getLname(),all1.getLogIN(),all1.getLogOut()};
+            Object[] rowData = {all1.getLogID(), all1.getdTO().getUsername(), all1.getdTO().getFname() + all1.getdTO().getLname(), all1.getLogIN(), all1.getLogOut()};
             dtm.addRow(rowData);
+
         }
+
+        sortData();
+    }
+
+    private void sortData() {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tblLoginHis.getModel());
+        tblLoginHis.setRowSorter(sorter);
+        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+        int columnIndexToSort = 0;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
     }
 }

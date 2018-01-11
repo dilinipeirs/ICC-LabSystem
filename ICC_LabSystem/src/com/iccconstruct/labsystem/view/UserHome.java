@@ -16,6 +16,10 @@ public class UserHome extends javax.swing.JFrame {
      */
     public UserHome() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setIconImage(Dashboard.image.getImage());
+        setTitle("ICC - Lab System - User");
     }
 
     /**

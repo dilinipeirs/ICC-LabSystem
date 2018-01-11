@@ -211,30 +211,19 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     }//GEN-LAST:event_btnChoosePDFActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        
-            if (tblConcrete.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(MixDesignPDFs.this, "Please Select a PDF to open", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
-                System.out.println("clicked : " + valueAt);
 
-//                ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-//                URL resource = contextClassLoader.getResource("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt);
-//                Desktop.getDesktop().open(new File(resource.toURI()));
-                System.out.println("opening");
-//                 Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "
-//                                + "src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
-                openPDF("src/com/iccconstruct/labsystem/resources/pdf-mix designs/"+valueAt);
+        if (tblConcrete.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(MixDesignPDFs.this, "Please Select a PDF to open", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String valueAt = (String) tblConcrete.getModel().getValueAt(tblConcrete.getSelectedRow(), 0);
+            System.out.println("clicked : " + valueAt);
 
-                System.out.println("opened");
+            System.out.println("opening");
+            openPDF("src/com/iccconstruct/labsystem/resources/pdf-mix designs/" + valueAt,valueAt);
 
-            }
+            System.out.println("opened");
 
-            //           
-      
-//        } catch (URISyntaxException ex) {
-//            Logger.getLogger(MixDesignPDFs.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        }
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void loadMixDesigns() throws Exception {
@@ -259,8 +248,8 @@ public class MixDesignPDFs extends javax.swing.JPanel {
     private javax.swing.JTextField txtPath;
     // End of variables declaration//GEN-END:variables
 
-    private void openPDF(String filepath) {
-      
+    private void openPDF(String filepath,String filename) {
+
 // build a controller
         SwingController controller = new SwingController();
         // Build a SwingViewFactory configured with the controller
@@ -271,7 +260,7 @@ public class MixDesignPDFs extends javax.swing.JPanel {
 // add copy keyboard command
         ComponentKeyBinding.install(controller, viewerComponentPanel);
 
- // add interactive mouse link annotation support via callback
+        // add interactive mouse link annotation support via callback
         controller.getDocumentViewController().setAnnotationCallback(
                 new org.icepdf.ri.common.MyAnnotationCallback(
                         controller.getDocumentViewController()));
@@ -279,7 +268,7 @@ public class MixDesignPDFs extends javax.swing.JPanel {
 // Use the factory to build a JPanel that is pre-configured
 //with a complete, active Viewer UI.
 // Create a JFrame to display the panel in
-        JFrame window = new JFrame("Metrics Wizard Help");
+        JFrame window = new JFrame("PDF Viewer -"+filename);
 
         window.getContentPane().add(viewerComponentPanel);
         window.pack();

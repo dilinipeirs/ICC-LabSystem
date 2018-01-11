@@ -11,6 +11,7 @@ import com.iccconstruct.labsystem.dto.UserDTO;
 import com.jidesoft.swing.AutoCompletion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,6 +26,11 @@ public class UserProfile extends javax.swing.JFrame {
     public UserProfile() {
         initComponents();
         setDetails();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setIconImage(Dashboard.image.getImage());
+        setTitle("ICC - Lab System - Account Information");
         userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
 
         AutoCompletion ac = new AutoCompletion(cmbType);
@@ -306,15 +312,15 @@ public class UserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cmbTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTitleActionPerformed
-        
+
     }//GEN-LAST:event_cmbTitleActionPerformed
 
     private void cmbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeActionPerformed
-        
+
     }//GEN-LAST:event_cmbTypeActionPerformed
 
     private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
-        
+
     }//GEN-LAST:event_txtFnameActionPerformed
 
     private void pswdPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswdPassActionPerformed

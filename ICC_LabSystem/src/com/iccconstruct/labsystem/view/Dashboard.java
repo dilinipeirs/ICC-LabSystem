@@ -13,6 +13,7 @@ import com.iccconstruct.labsystem.dto.UserDTO;
 import com.jidesoft.swing.AutoCompletion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,12 +26,15 @@ public class Dashboard extends javax.swing.JFrame {
     LoginHistoryController historyController;
     public static UserDTO user;
     public static LoginHistoryDTO history;
-
+    public static ImageIcon image = new ImageIcon("src/com/iccconstruct/labsystem/resources/images/icc-logo.jpeg");
     public Dashboard() {
         try {
             initComponents();
             setLocationRelativeTo(null);
+            setResizable(false);
             txtUsername.requestFocus();
+            setIconImage(image.getImage());
+            setTitle("ICC - Lab System");
             historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
             userController = (UserController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.USER);
             makeFirstAdmin();
@@ -326,7 +330,7 @@ public class Dashboard extends javax.swing.JFrame {
             add = userController.add(userDTO);
         }
         add = true;
-        UserDTO maintain = new UserDTO(2, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
+        UserDTO maintain = new UserDTO(0, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
             add2 = userController.addMaintainance(maintain);
         }

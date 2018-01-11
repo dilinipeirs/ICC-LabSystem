@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -41,6 +42,10 @@ public class MixDesignForm extends javax.swing.JFrame {
         try {
             initComponents();
             setLocationRelativeTo(null);
+            setResizable(false);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setIconImage(Dashboard.image.getImage());
+            setTitle("ICC - Lab System - Create Mix Design Form");
             setDateTime();
 
             AutoCompletion ac = new AutoCompletion(cmbConcreteGrade);
@@ -709,6 +714,7 @@ public class MixDesignForm extends javax.swing.JFrame {
             System.out.println("item state changed");
             System.out.println(cmbConcreteGrade.getSelectedItem().toString());
             concreteWorkDTO = concreteController.search(cmbConcreteGrade.getSelectedItem().toString());
+            System.out.println("retrieved data from db");
             System.out.println(concreteWorkDTO);
 
             lblAddMix.setText(concreteWorkDTO.getAdmix() + "");
