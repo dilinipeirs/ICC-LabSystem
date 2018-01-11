@@ -5,8 +5,14 @@
  */
 package com.iccconstruct.labsystem.view.panels;
 
+import com.iccconstruct.labsystem.view.util.ZipUtils;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -148,14 +154,23 @@ public class DatabaseBackup extends javax.swing.JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set backup location: "
                     + chooser.getCurrentDirectory().getPath());
-            txtBackup.setText(chooser.getCurrentDirectory().getPath()+filename);
+            txtBackup.setText(chooser.getCurrentDirectory().getPath() + filename);
 
         }
 
     }//GEN-LAST:event_btnBrowseActionPerformed
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
-        // TODO add your handling code here:
+        if (txtBackup.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Backup location cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                ZipUtils.entry();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(DatabaseBackup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }//GEN-LAST:event_btnBackupActionPerformed
 
     private void btnBrowse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowse2ActionPerformed
