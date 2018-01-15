@@ -524,9 +524,6 @@ public class SystemUsers extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) tblUsers.getModel();
         dtm.setRowCount(0);
         for (UserDTO all1 : all) {
-            if (all1.getUserID() == 0) {
-                continue;
-            }
             Object[] rowData = {all1.getUserID(), all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
             dtm.addRow(rowData);
         }
