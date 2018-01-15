@@ -62,14 +62,14 @@ public class UserDTO extends SuperDTO {
         this.userType = userType;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof UserDTO){
-            UserDTO d=(UserDTO)obj;
-            return d.userID==this.userID;
-        }
-        return false;
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        if(obj instanceof UserDTO){
+//            UserDTO d=(UserDTO)obj;
+//            return d.userID==this.userID;
+//        }
+//        return false;
+//    }
 
     
     

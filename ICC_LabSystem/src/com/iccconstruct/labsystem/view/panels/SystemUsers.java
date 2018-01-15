@@ -523,6 +523,7 @@ public class SystemUsers extends javax.swing.JPanel {
         ArrayList<UserDTO> all = controller.getAll();
         DefaultTableModel dtm = (DefaultTableModel) tblUsers.getModel();
         dtm.setRowCount(0);
+        all.remove(0);
         for (UserDTO all1 : all) {
 //            if (all1.getUserID() == 0) {
 //                continue;
