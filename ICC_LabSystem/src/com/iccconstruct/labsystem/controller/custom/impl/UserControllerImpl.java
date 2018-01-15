@@ -30,6 +30,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public boolean add(UserDTO dto) throws Exception {
+        
         return userDAO.add(dto);
     }
 
