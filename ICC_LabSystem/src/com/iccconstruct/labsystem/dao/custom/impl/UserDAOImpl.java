@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
         File path = new File("_data/_user");
         File[] listFiles = path.listFiles();
         ArrayList<UserDTO> objs = new ArrayList<>();
+        System.out.println(objs.size());
         for (File file : listFiles) {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -90,12 +91,13 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addMaintainace(UserDTO maintain) throws Exception {
         File file = new File("_data/_user/" + maintain.getUserID() + ".ser");
-        file.setReadOnly();
+//        file.setReadOnly();
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(maintain);
 
         return file.exists();
+        
 
     }
 
