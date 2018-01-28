@@ -6,6 +6,7 @@
 package com.iccconstruct.labsystem.view.panels;
 
 import com.iccconstruct.labsystem.view.util.ZipUtils;
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -146,7 +147,14 @@ public class DatabaseBackup extends javax.swing.JPanel {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         JFileChooser chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {        
+                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooser.showSaveDialog(DatabaseBackup.this);
+                System.out.println(chooser.getSelectedFile());
+            }
+        });
 
         int returnVal = chooser.showSaveDialog(this);
         LocalDate date = LocalDate.now();

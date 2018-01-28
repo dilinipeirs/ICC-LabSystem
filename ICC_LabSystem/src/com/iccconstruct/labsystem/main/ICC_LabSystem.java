@@ -79,12 +79,12 @@ public class ICC_LabSystem {
             DecimalFormat newFormat = new DecimalFormat("#.##");
             System.out.println("creating the mix designs...");
             ArrayList<ConcreteWorkDTO> list = new ArrayList<>();
-            list.add(new ConcreteWorkDTO("C40@28 Days", 270.0, 160.0, 4.05, 830.0, 1020.0, 180.0, 0.0, Double.valueOf(newFormat.format(160 / 270.0))));
-            list.add(new ConcreteWorkDTO("C40@56 Days", 320.0, 160.0, 4.50, 800.0, 1055.0, 135.0, 0.0, Double.valueOf(newFormat.format(160 / 320.0))));
-            list.add(new ConcreteWorkDTO("C50@56 Days", 290.0, 165.0, 4.90, 820.0, 1000.0, 195.0, 0.0, Double.valueOf(newFormat.format(165 / 290.0))));
-            list.add(new ConcreteWorkDTO("C50@28 Days", 340.0, 160.0, 4.90, 785.0, 1040.0, 145.0, 0.0, Double.valueOf(newFormat.format(160 / 340.0))));
-            list.add(new ConcreteWorkDTO("C70@28 Days - 1", 440.0, 160.0, 5.70, 730.0, 1010.0, 100.0, 30.0, Double.valueOf(newFormat.format(160 / 440.0))));
-            list.add(new ConcreteWorkDTO("C70@28 Days - 2", 430.0, 160.0, 5.70, 730.0, 1010.0, 100.0, 40.0, Double.valueOf(newFormat.format(160 / 430.0))));
+            list.add(new ConcreteWorkDTO("C40@28 Days", 270.0, 160.0, 4.05, 830.0, 1020.0, 180.0, 0.0, Double.valueOf(newFormat.format(160 / (270.0+180.0+0.0)))));
+            list.add(new ConcreteWorkDTO("C40@56 Days", 320.0, 160.0, 4.50, 800.0, 1055.0, 135.0, 0.0, Double.valueOf(newFormat.format(160 / (320.0+135.0+0)))));
+            list.add(new ConcreteWorkDTO("C50@56 Days", 290.0, 165.0, 4.90, 820.0, 1000.0, 195.0, 0.0, Double.valueOf(newFormat.format(165 / (290.0+195+0)))));
+            list.add(new ConcreteWorkDTO("C50@28 Days", 340.0, 160.0, 4.90, 785.0, 1040.0, 145.0, 0.0, Double.valueOf(newFormat.format(160 / (340.0+145+0)))));
+            list.add(new ConcreteWorkDTO("C70@28 Days - 1", 440.0, 160.0, 5.70, 730.0, 1010.0, 100.0, 30.0, Double.valueOf(newFormat.format(160 / (440.0+100+30)))));
+            list.add(new ConcreteWorkDTO("C70@28 Days - 2", 430.0, 160.0, 5.70, 730.0, 1010.0, 100.0, 40.0, Double.valueOf(newFormat.format(160 / (430.0+100+40)))));
 
             boolean add = icc_LabSystem.concreteController.add(list);
             if (add) {

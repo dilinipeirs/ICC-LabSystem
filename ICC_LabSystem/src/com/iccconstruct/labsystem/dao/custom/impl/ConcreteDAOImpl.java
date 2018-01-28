@@ -41,11 +41,11 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public boolean add(ConcreteWorkDTO dto) throws Exception {
-        FileOutputStream fos = new FileOutputStream("_data/_concrete/" + dto.getConcreteGrade()+ ".ser");
+        FileOutputStream fos = new FileOutputStream("_data/_concrete/" + dto.getConcreteGrade() + ".ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(dto);
 
-        File file = new File("_data/_concrete/" + dto.getConcreteGrade()+ ".ser");
+        File file = new File("_data/_concrete/" + dto.getConcreteGrade() + ".ser");
         if (file.exists()) {
             return true;
         }
@@ -55,9 +55,13 @@ public class ConcreteDAOImpl implements ConcreteDAO {
     @Override
     public ConcreteWorkDTO search(String id) throws Exception {
         ArrayList<ConcreteWorkDTO> all = getAll();
+        System.out.println("id of concretaDAO" + id);
+        System.out.println(all.size());
         for (ConcreteWorkDTO all1 : all) {
-            if (id.equals(all1.getConcreteGrade()));
-            return all1;
+
+            if (id.equals(all1.getConcreteGrade())) {
+                return all1;
+            }
         }
         return null;
     }
@@ -65,7 +69,7 @@ public class ConcreteDAOImpl implements ConcreteDAO {
     @Override
     public boolean update(ConcreteWorkDTO dto) throws Exception {
         boolean delete = delete(dto.getConcreteGrade());
-        if(delete){
+        if (delete) {
             return add(dto);
         }
         return delete;
@@ -73,11 +77,11 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public boolean delete(String id) throws Exception {
-        File f = new File("_data/_concrete/"+id+".ser");
+        File f = new File("_data/_concrete/" + id + ".ser");
         return f.delete();
     }
 
-   @Override
+    @Override
     public boolean isExist(ConcreteWorkDTO dto) throws Exception {
         ArrayList<ConcreteWorkDTO> all = getAll();
         for (ConcreteWorkDTO all1 : all) {
