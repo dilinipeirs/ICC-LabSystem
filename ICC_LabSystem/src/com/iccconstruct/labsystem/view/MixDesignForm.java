@@ -517,8 +517,8 @@ public class MixDesignForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                        .addGap(23, 23, 23))
+                        .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addGap(14, 14, 14))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblRatio2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -680,7 +680,7 @@ public class MixDesignForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 27, Short.MAX_VALUE))
+                                .addGap(0, 30, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -720,7 +720,12 @@ public class MixDesignForm extends javax.swing.JFrame {
         } else {
             try {
                 FormDTO dTO = new FormDTO(Dashboard.user, LocalDateTime.now(), concreteWorkDTO, new Double(txtMFineAgg.getText()), new Double(txtMCourseAgg.getText()), new Double(txtWater.getText()), new Double(lblRatio2.getText()));
-                formController.add(dTO);
+                boolean add = formController.add(dTO);
+                if (!add) {
+                    JOptionPane.showMessageDialog(MixDesignForm.this, "Cannot make Mix Design Form", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(MixDesignForm.this, "Successfully created Mix Design Form", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -919,35 +924,35 @@ public class MixDesignForm extends javax.swing.JFrame {
         lblAddMix2.setText(lblAddMix.getText());
         lblFlyAsh2.setText(lblFlyAsh.getText());
         lblSilicaFume2.setText(lblSilicaFume.getText());
-        
+
         //calculate values
         Double a = new Double(lblFineAgg.getText());
         Double b = new Double(lblCourseAgg.getText());
         Double x = new Double(txtMFineAgg.getText());
         Double y = new Double(txtMCourseAgg.getText());
         DecimalFormat newFormat = new DecimalFormat("#.##");
-        
+
         Double a1 = a;
         Double b1 = b;
-        if(x!=0){
-            a1=a*(1+x/100);
-            a1=Double.valueOf(newFormat.format(a1));
+        if (x != 0) {
+            a1 = a * (1 + x / 100);
+            a1 = Double.valueOf(newFormat.format(a1));
         }
-        if(y!=0){
-            b1=b*(1+y/100);
-            b1=Double.valueOf(newFormat.format(b1));
+        if (y != 0) {
+            b1 = b * (1 + y / 100);
+            b1 = Double.valueOf(newFormat.format(b1));
         }
-                
+
         lblCourseAgg2.setText(b1.toString());
         lblFineAgg2.setText(a1.toString());
-        
+
         Double c = new Double(lblWater.getText());
-        Double c1= c-((a-a1)+(b-b1));
-        c1=Double.valueOf(newFormat.format(c1));
+        Double c1 = c - ((a - a1) + (b - b1));
+        c1 = Double.valueOf(newFormat.format(c1));
         txtWater.setText(c1.toString());
-        
-        Double newRatio = c1/(Double.valueOf(lblCement2.getText())+Double.valueOf(lblFlyAsh2.getText())+Double.valueOf(lblSilicaFume2.getText()));
-        newRatio=Double.valueOf(newFormat.format(newRatio));
+
+        Double newRatio = c1 / (Double.valueOf(lblCement2.getText()) + Double.valueOf(lblFlyAsh2.getText()) + Double.valueOf(lblSilicaFume2.getText()));
+        newRatio = Double.valueOf(newFormat.format(newRatio));
         lblRatio2.setText(newRatio.toString());
     }
 }

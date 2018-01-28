@@ -30,6 +30,7 @@ public class FormControllerImpl implements FormController {
 
     @Override
     public boolean add(FormDTO dto) throws Exception {
+        dto.setFormID(getCount()+1);
         return formDAO.add(dto);
     }
 
