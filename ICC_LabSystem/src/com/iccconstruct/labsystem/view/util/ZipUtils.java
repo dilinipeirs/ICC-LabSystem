@@ -22,14 +22,15 @@ import java.util.zip.ZipOutputStream;
 public class ZipUtils {
 
     private List <String> fileList;
-    private static final String OUTPUT_ZIP_FILE = "Folder.zip";
-    private static final String SOURCE_FOLDER = "_data"; // SourceFolder path
+    private static String OUTPUT_ZIP_FILE = "Folder.zip";
+    private static String SOURCE_FOLDER = "_data"; // SourceFolder path
 
     public ZipUtils() {
         fileList = new ArrayList < String > ();
     }
 
-    public static void entry() throws FileNotFoundException {
+    public static void entry(String output) throws FileNotFoundException {
+        OUTPUT_ZIP_FILE=output+"\\";
         ZipUtils appZip = new ZipUtils();
         appZip.generateFileList(new File(SOURCE_FOLDER));
         appZip.zipIt(OUTPUT_ZIP_FILE);
@@ -38,7 +39,7 @@ public class ZipUtils {
     public void zipIt(String zipFile) throws FileNotFoundException {
         byte[] buffer = new byte[1024];
         String source = new File(SOURCE_FOLDER).getName();
-        FileOutputStream fos = new FileOutputStream(new File("C://Desktop//Folder"));
+        FileOutputStream fos = new FileOutputStream(new File(OUTPUT_ZIP_FILE));
         ZipOutputStream zos = new ZipOutputStream(fos);
         try {
             fos = new FileOutputStream(zipFile);

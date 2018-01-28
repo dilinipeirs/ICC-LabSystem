@@ -418,8 +418,10 @@ public class MixDesignInfo extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Component[] components = getRootPane().getComponents();
+        System.out.println("componenets :" +components.length);
         for (Component component : components) {
             if (component instanceof JTextField) {
+                System.out.println("erasing txt");
                 ((JTextField) component).setText("");
             }
         }

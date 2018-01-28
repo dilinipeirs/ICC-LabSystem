@@ -173,7 +173,7 @@ public class DatabaseBackup extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Backup location cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                ZipUtils.entry();
+                ZipUtils.entry(txtBackup.getText());
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(DatabaseBackup.class.getName()).log(Level.SEVERE, null, ex);
             }
