@@ -8,7 +8,9 @@ package com.iccconstruct.labsystem.dao.custom.impl;
 import com.iccconstruct.labsystem.dao.custom.FormDAO;
 import com.iccconstruct.labsystem.dto.FormDTO;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -20,7 +22,20 @@ public class FormDAOImpl implements FormDAO {
 
     @Override
     public ArrayList<FormDTO> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File path = new File("_data/_form");
+        File[] listFiles = path.listFiles();
+        ArrayList<FormDTO> objs = new ArrayList<>();
+        if (listFiles == null) {
+            return null;
+        } else {
+            for (File file : listFiles) {
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                FormDTO dto = (FormDTO) ois.readObject();
+                objs.add(dto);
+            }
+        }
+        return objs;
     }
 
     @Override

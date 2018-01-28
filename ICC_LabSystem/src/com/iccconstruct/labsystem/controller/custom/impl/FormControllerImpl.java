@@ -25,7 +25,7 @@ public class FormControllerImpl implements FormController {
 
     @Override
     public ArrayList<FormDTO> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return formDAO.getAll();
     }
 
     @Override
