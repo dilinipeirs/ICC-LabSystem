@@ -27,6 +27,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static UserDTO user;
     public static LoginHistoryDTO history;
     public static ImageIcon image = new ImageIcon("src/com/iccconstruct/labsystem/resources/images/icc-logo.jpeg");
+
     public Dashboard() {
         try {
             initComponents();
@@ -325,16 +326,21 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void makeFirstAdmin() throws Exception {
         boolean add = false, add2 = false;
-        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
+        UserDTO userDTO = new UserDTO(0, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
         if (!userController.isExist(userDTO)) {
+            System.out.println("adding default user");
             add = userController.add(userDTO);
+        } else {
+            add = true;
         }
-        add = true;
+
         UserDTO maintain = new UserDTO(0, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
+            System.out.println("adding maintainance");
             add2 = userController.addMaintainance(maintain);
+        } else {
+            add2 = true;
         }
-        add2 = true;
 
         if (add && add2) {
             System.out.println("admin users made successfully");
@@ -343,8 +349,8 @@ public class Dashboard extends javax.swing.JFrame {
         }
 
     }
-    
-    public void setNewLogin(){
+
+    public void setNewLogin() {
         history = null;
         user = null;
     }

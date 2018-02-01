@@ -161,8 +161,8 @@ public class DatabaseBackup extends javax.swing.JPanel {
         String filename = "icc-labsystem-database backup-" + date.toString() + ".zip";
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set backup location: "
-                    + chooser.getCurrentDirectory().getPath());
-            txtBackup.setText(chooser.getCurrentDirectory().getAbsolutePath()+ File.pathSeparator+filename);
+                    + chooser.getSelectedFile().getAbsolutePath());
+            txtBackup.setText(chooser.getSelectedFile().getAbsolutePath()+ File.separator+filename);
 
         }
 
@@ -175,6 +175,7 @@ public class DatabaseBackup extends javax.swing.JPanel {
             try {
                 ZipUtils.entry(txtBackup.getText());
             } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "There was an error and all the files might be backed up", "Something Went Wrong!", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(DatabaseBackup.class.getName()).log(Level.SEVERE, null, ex);
             }
 

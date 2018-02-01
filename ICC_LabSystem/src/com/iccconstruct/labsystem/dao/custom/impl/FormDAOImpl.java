@@ -23,6 +23,8 @@ public class FormDAOImpl implements FormDAO {
     @Override
     public ArrayList<FormDTO> getAll() throws Exception {
         File path = new File("_data/_form");
+        if(!path.exists())
+            path.mkdir();
         File[] listFiles = path.listFiles();
         ArrayList<FormDTO> objs = new ArrayList<>();
         if (listFiles == null) {

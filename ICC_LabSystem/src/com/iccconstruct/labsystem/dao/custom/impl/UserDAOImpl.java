@@ -90,7 +90,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addMaintainace(UserDTO maintain) throws Exception {
         File file = new File("_data/_user/" + maintain.getUserID() + ".ser");
-        file.setReadOnly();
+//        file.setReadOnly();
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(maintain);

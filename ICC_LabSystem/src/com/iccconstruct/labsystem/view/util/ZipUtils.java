@@ -102,10 +102,11 @@ public class ZipUtils {
         }
 
         if (node.isDirectory()) {
-            String[] subNote = node.list();
+
             File[] listFiles = node.listFiles();
-            for (String filename : subNote) {
-                generateFileList(new File(node, filename));
+            if (listFiles.length == 0) {
+                fileList.add(generateZipEntry(node.toString()));
+                files.add(node);
             }
             for (File listFile : listFiles) {
                 generateFileList(listFile);
