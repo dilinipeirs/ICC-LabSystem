@@ -32,6 +32,8 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             objs.add((LoginHistoryDTO) ois.readObject());
+            fis.close();
+            ois.close();
         }
         return objs;
     }
@@ -47,7 +49,10 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
             System.out.println("added successful");
             return true;
         }
+        fos.close();
+        oos.close();
         return false;
+
     }
 
     @Override
@@ -62,12 +67,14 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
             System.out.println("delete successful");
             return add(dto);
         }
+        System.out.println("cudnt delete");
         return false;
     }
 
     @Override
     public boolean delete(String id) throws Exception {
         File f = new File("_data/_loginHis/" + id + ".ser");
+        System.out.println(f);
         return f.delete();
     }
 

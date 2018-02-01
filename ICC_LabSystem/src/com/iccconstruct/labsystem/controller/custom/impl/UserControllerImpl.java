@@ -39,6 +39,11 @@ public class UserControllerImpl implements UserController {
     public UserDTO search(String id) throws Exception {
         return userDAO.search(id);
     }
+    
+    @Override
+    public UserDTO search(int id) throws Exception {
+        return userDAO.search(id);
+    }
 
     @Override
     public boolean update(UserDTO dto) throws Exception {

@@ -244,7 +244,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()), cmdUserType.getSelectedItem().toString());
             boolean exist = userController.isExist(dTO);
-            user = dTO;
+            user = userController.search(dTO.getUsername());
             if (exist) {
                 history = new LoginHistoryDTO(dTO);
                 historyController.add(history);

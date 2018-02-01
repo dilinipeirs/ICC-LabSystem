@@ -451,7 +451,7 @@ public class SystemUsers extends javax.swing.JPanel {
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         try {
-            UserDTO search = controller.search(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+            UserDTO search = controller.search((int)(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0)));
             System.out.println(search.getTitle());
             System.out.println(search.getFname() + search.getLname());
 

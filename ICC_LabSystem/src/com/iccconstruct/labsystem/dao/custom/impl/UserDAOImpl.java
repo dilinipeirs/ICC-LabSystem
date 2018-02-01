@@ -29,6 +29,8 @@ public class UserDAOImpl implements UserDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             objs.add((UserDTO) ois.readObject());
+            fis.close();
+            ois.close();
         }
         return objs;
     }
@@ -41,8 +43,11 @@ public class UserDAOImpl implements UserDAO {
 
         File file = new File("_data/_user/" + dto.getUserID() + ".ser");
         if (file.exists()) {
+            System.out.println("user added success");
             return true;
         }
+        fos.close();
+        oos.close();
         return false;
     }
 
@@ -50,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
     public UserDTO search(String id) throws Exception {
         ArrayList<UserDTO> all = getAll();
         for (UserDTO all1 : all) {
-            if (all1.getUsername().equals(id) || all1.getUserID()==Integer.parseInt(id)) {
+            if ( all1.getUsername().equals(id)) {
                 return all1;
             }
 
@@ -59,8 +64,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public UserDTO search(int id) throws Exception {
+        ArrayList<UserDTO> all = getAll();
+        for (UserDTO all1 : all) {
+            if ( all1.getUserID()==id) {
+                return all1;
+            }
+
+        }
+        return null;
+    }
+    
+    @Override
     public boolean update(UserDTO dto) throws Exception {
         if (delete(dto.getUserID() + "")) {
+            System.out.println("delete sucess");
             return add(dto);
         }
         return false;

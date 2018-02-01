@@ -33,6 +33,8 @@ public class ConcreteDAOImpl implements ConcreteDAO {
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 ConcreteWorkDTO dto = (ConcreteWorkDTO) ois.readObject();
                 objs.add(dto);
+                fis.close();
+                ois.close();
             }
         }
 
@@ -49,6 +51,8 @@ public class ConcreteDAOImpl implements ConcreteDAO {
         if (file.exists()) {
             return true;
         }
+        fos.close();
+        oos.close();
         return false;
     }
 

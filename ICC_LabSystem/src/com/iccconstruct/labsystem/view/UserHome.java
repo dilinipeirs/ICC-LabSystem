@@ -106,7 +106,7 @@ public class UserHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAccountActionPerformed
 
     private void btnViewFormsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewFormsActionPerformed
-        // TODO add your handling code here:
+        new ViewMixDesigns().setVisible(true);
     }//GEN-LAST:event_btnViewFormsActionPerformed
 
     /**

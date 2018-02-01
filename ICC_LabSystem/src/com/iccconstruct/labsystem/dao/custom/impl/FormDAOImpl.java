@@ -35,6 +35,8 @@ public class FormDAOImpl implements FormDAO {
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 FormDTO dto = (FormDTO) ois.readObject();
                 objs.add(dto);
+                fis.close();
+                ois.close();
             }
         }
         return objs;
@@ -50,6 +52,8 @@ public class FormDAOImpl implements FormDAO {
         if (file.exists()) {
             return true;
         }
+        fos.close();
+        oos.close();
         return false;
     }
 
