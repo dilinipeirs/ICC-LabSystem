@@ -104,10 +104,6 @@ public class ZipUtils {
         if (node.isDirectory()) {
 
             File[] listFiles = node.listFiles();
-            if (listFiles.length == 0) {
-                fileList.add(generateZipEntry(node.toString()));
-                files.add(node);
-            }
             for (File listFile : listFiles) {
                 generateFileList(listFile);
             }

@@ -17,18 +17,22 @@ import java.util.zip.ZipInputStream;
  * @author Dilini Peiris
  */
 public class UnzipFiles {
+
     public static void entry(String zip) {
         String zipFilePath = zip;
-        
-        String destDir = "";
-        
+
+        String destDir = "_data";
+
         unzip(zipFilePath, destDir);
     }
 
     private static void unzip(String zipFilePath, String destDir) {
+        System.out.println("unzip method");
         File dir = new File(destDir);
         // create output directory if it doesn't exist
-        if(!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         FileInputStream fis;
         //buffer for read and write data to file
         byte[] buffer = new byte[1024];
@@ -36,16 +40,18 @@ public class UnzipFiles {
             fis = new FileInputStream(zipFilePath);
             ZipInputStream zis = new ZipInputStream(fis);
             ZipEntry ze = zis.getNextEntry();
-            while(ze != null){
+            while (ze != null) {
                 String fileName = ze.getName();
                 File newFile = new File(destDir + File.separator + fileName);
-                System.out.println("Unzipping to "+newFile.getAbsolutePath());
+                System.out.println("Unzipping to " + newFile.getAbsolutePath());
                 //create directories for sub directories in zip
+
                 new File(newFile.getParent()).mkdirs();
+
                 FileOutputStream fos = new FileOutputStream(newFile);
                 int len;
                 while ((len = zis.read(buffer)) > 0) {
-                fos.write(buffer, 0, len);
+                    fos.write(buffer, 0, len);
                 }
                 fos.close();
                 //close this ZipEntry
