@@ -152,7 +152,7 @@ public class DatabaseBackup extends javax.swing.JPanel {
             public void run() {        
                 chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 chooser.showSaveDialog(DatabaseBackup.this);
-                System.out.println(chooser.getSelectedFile());
+                System.out.println(chooser);
             }
         });
 
@@ -162,7 +162,7 @@ public class DatabaseBackup extends javax.swing.JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set backup location: "
                     + chooser.getCurrentDirectory().getPath());
-            txtBackup.setText(chooser.getCurrentDirectory().getPath() + filename);
+            txtBackup.setText(chooser.getCurrentDirectory().getAbsolutePath()+ File.pathSeparator+filename);
 
         }
 
