@@ -247,6 +247,7 @@ public class Dashboard extends javax.swing.JFrame {
             user = userController.search(dTO.getUsername());
             if (exist) {
                 history = new LoginHistoryDTO(dTO);
+                System.out.println(history + "\t\tID"+ history.getLogID());
                 historyController.add(history);
                 if (dTO.getUserType().equals("Admin")) {
                     this.dispose();
