@@ -52,6 +52,7 @@ public class AdminHome extends javax.swing.JFrame {
                         boolean update = historyController.update(Dashboard.history);
 
                         if (update) {
+                            AdminHome.this.dispose();
                             Dashboard d = new Dashboard();
                             d.setNewLogin();
                             d.setVisible(true);
@@ -260,7 +261,23 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateMixActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        int showConfirmDialog = JOptionPane.showConfirmDialog(AdminHome.this, "Are you sure you want to Log out?");
+        if (showConfirmDialog == 0) {
+            try {
+                boolean update = historyController.update(Dashboard.history);
+                
+                if (update) {
+                    AdminHome.this.dispose();
+                    Dashboard d = new Dashboard();
+                    d.setNewLogin();
+                    d.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(AdminHome.this, "Cannot Log Out", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(AdminHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnManagePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePDFActionPerformed
