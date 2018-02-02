@@ -17,6 +17,12 @@
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/panels/SystemUsers.java</file>
             <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
         </group>
-        <group name="General"/>
+        <group name="General">
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dao/custom/impl/LoginHistoryDAOImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/AdminHome.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/controller/custom/impl/LoginHistoryControllerImpl.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/view/Dashboard.java</file>
+            <file>file:/F:/Playground/Projects/ICC%20-%20Lab/ICC-LabSystem/ICC_LabSystem/src/com/iccconstruct/labsystem/dto/LoginHistoryDTO.java</file>
+        </group>
     </open-files>
 </project-private>

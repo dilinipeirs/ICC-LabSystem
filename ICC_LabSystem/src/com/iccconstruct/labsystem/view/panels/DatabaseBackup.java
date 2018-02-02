@@ -5,7 +5,9 @@
  */
 package com.iccconstruct.labsystem.view.panels;
 
+import com.iccconstruct.labsystem.view.util.UnzipFiles;
 import com.iccconstruct.labsystem.view.util.ZipUtils;
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -146,15 +148,22 @@ public class DatabaseBackup extends javax.swing.JPanel {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         JFileChooser chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {        
+                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooser.showSaveDialog(DatabaseBackup.this);
+                System.out.println(chooser);
+            }
+        });
 
         int returnVal = chooser.showSaveDialog(this);
         LocalDate date = LocalDate.now();
         String filename = "icc-labsystem-database backup-" + date.toString() + ".zip";
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set backup location: "
-                    + chooser.getCurrentDirectory().getPath());
-            txtBackup.setText(chooser.getCurrentDirectory().getPath() + filename);
+                    + chooser.getSelectedFile().getAbsolutePath());
+            txtBackup.setText(chooser.getSelectedFile().getAbsolutePath()+ File.separator+filename);
 
         }
 
@@ -165,8 +174,9 @@ public class DatabaseBackup extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Backup location cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                ZipUtils.entry();
+                ZipUtils.entry(txtBackup.getText());
             } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "There was an error and all the files might be backed up", "Something Went Wrong!", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(DatabaseBackup.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -180,18 +190,23 @@ public class DatabaseBackup extends javax.swing.JPanel {
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("set restore db: "
-                    + chooser.getCurrentDirectory().getPath());
-            txtRestore.setText(chooser.getCurrentDirectory().getPath());
+                    + chooser.getSelectedFile().getAbsolutePath());
+            txtRestore.setText(chooser.getSelectedFile().getAbsolutePath());
 
         }
     }//GEN-LAST:event_btnBrowse2ActionPerformed
 
     private void txtRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRestoreActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtRestoreActionPerformed
 
     private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
-        // TODO add your handling code here:
+         if (txtRestore.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Restoring file cannot be empty", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+             System.out.println("button clicked");
+             UnzipFiles.entry(txtRestore.getText());
+        }
     }//GEN-LAST:event_btnRestoreActionPerformed
 
 

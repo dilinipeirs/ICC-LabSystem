@@ -393,8 +393,10 @@ public class UserProfile extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setDetails() {
+        System.out.println(user);
         cmbTitle.setSelectedItem(user.getTitle());
         txtFname.setText(user.getFname());
+        System.out.println(user.getFname());
         txtLname.setText(user.getLname());
         txtEPF.setText(user.getEpf());
         txtDesignation.setText(user.getDesignation());

@@ -15,5 +15,5 @@ import com.iccconstruct.labsystem.dto.UserDTO;
 public interface UserController extends SuperController<UserDTO>{
 
     public boolean addMaintainance(UserDTO maintain)throws Exception;
-    
+    public UserDTO search(int id) throws Exception;
 }

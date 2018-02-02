@@ -451,7 +451,7 @@ public class SystemUsers extends javax.swing.JPanel {
 
     private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
         try {
-            UserDTO search = controller.search(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
+            UserDTO search = controller.search((int)(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0)));
             System.out.println(search.getTitle());
             System.out.println(search.getFname() + search.getLname());
 
@@ -523,7 +523,11 @@ public class SystemUsers extends javax.swing.JPanel {
         ArrayList<UserDTO> all = controller.getAll();
         DefaultTableModel dtm = (DefaultTableModel) tblUsers.getModel();
         dtm.setRowCount(0);
+        all.remove(0);
         for (UserDTO all1 : all) {
+//            if (all1.getUserID() == 0) {
+//                continue;
+//            }
             Object[] rowData = {all1.getUserID(), all1.getTitle(), all1.getFname() + all1.getLname(), all1.getEpf()};
             dtm.addRow(rowData);
         }

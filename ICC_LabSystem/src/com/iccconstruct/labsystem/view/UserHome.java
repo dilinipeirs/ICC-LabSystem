@@ -5,21 +5,63 @@
  */
 package com.iccconstruct.labsystem.view;
 
+import com.iccconstruct.labsystem.controller.ControllerFactory;
+import com.iccconstruct.labsystem.controller.custom.LoginHistoryController;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+
 /**
  *
  * @author Dilini Peiris
  */
 public class UserHome extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UserHome
-     */
+    LoginHistoryController historyController;
+
     public UserHome() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         setIconImage(Dashboard.image.getImage());
         setTitle("ICC - Lab System - User");
+        historyController = (LoginHistoryController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.LOGIN);
+        this.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                String[] buttons = new String[]{"Yes", "No", "Log Out"};
+                int confirm = JOptionPane.showOptionDialog(
+                        UserHome.this, "Are you sure you want to close the Application? Any unsaved data will be lost!",
+                        "Exit Confirmation", 0,
+                        JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1]);
+                System.out.println(confirm);
+                if (confirm == 0) {
+                    System.exit(0);
+                } else if (confirm == 2) {
+                    try {
+                        System.out.println(Dashboard.history);
+                        boolean update = historyController.update(Dashboard.history);
+
+                        if (update) {
+                            UserHome.this.dispose();
+                            Dashboard d = new Dashboard();
+                            d.setNewLogin();
+                            d.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(UserHome.this, "Cannot Log Out", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(AdminHome.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        });
     }
 
     /**
@@ -62,6 +104,11 @@ public class UserHome extends javax.swing.JFrame {
         });
 
         btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,8 +153,28 @@ public class UserHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAccountActionPerformed
 
     private void btnViewFormsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewFormsActionPerformed
-        // TODO add your handling code here:
+        new ViewMixDesigns().setVisible(true);
     }//GEN-LAST:event_btnViewFormsActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        int showConfirmDialog = JOptionPane.showConfirmDialog(UserHome.this, "Are you sure you want to Log out?");
+        if (showConfirmDialog == 0) {
+            try {
+                boolean update = historyController.update(Dashboard.history);
+
+                if (update) {
+                    UserHome.this.dispose();
+                    Dashboard d = new Dashboard();
+                    d.setNewLogin();
+                    d.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(UserHome.this, "Cannot Log Out", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(UserHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,6 +12,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +29,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
             initComponents();
             concreteController = (ConcreteController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.CONCRETE);
             setConcrete();
-           
+
         } catch (Exception ex) {
             Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,6 +68,8 @@ public class MixDesignInfo extends javax.swing.JPanel {
         txtFlyAsh = new javax.swing.JTextField();
         txtSilicaFume = new javax.swing.JTextField();
         lblWaterCement = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConcreteGrade = new javax.swing.JTable();
@@ -168,6 +171,16 @@ public class MixDesignInfo extends javax.swing.JPanel {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("Concrete Grade :");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,10 +195,11 @@ public class MixDesignInfo extends javax.swing.JPanel {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCement, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtWater, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +211,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCourseAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFlyAsh, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,13 +221,17 @@ public class MixDesignInfo extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,17 +365,17 @@ public class MixDesignInfo extends javax.swing.JPanel {
                                 .addComponent(jLabel5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))))
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel14)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,22 +435,25 @@ public class MixDesignInfo extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSilicaFumeActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Component[] components = getRootPane().getComponents();
-        for (Component component : components) {
-            if (component instanceof JTextField) {
-                ((JTextField) component).setText("");
-            }
-        }
+        txtName.setText("");
+        txtAddMix.setText("");
+        txtCement.setText("");
+        txtCourseAgg.setText("");
+        txtFlyAsh.setText("");
+        txtFineAgg.setText("");
+        txtSilicaFume.setText("");
+        txtWater.setText("");
         lblWaterCement.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblConcreteGradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblConcreteGradeMouseClicked
         try {
             ConcreteWorkDTO search = concreteController.search((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), tblConcreteGrade.getSelectedColumn()));
-            System.out.println("selected : "+(String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), tblConcreteGrade.getSelectedColumn()));
+            System.out.println("selected : " + (String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), tblConcreteGrade.getSelectedColumn()));
             System.out.println(search);
+            txtName.setText(search.getConcreteGrade());
             txtAddMix.setText(search.getAdmix() + "");
-            System.out.println(search.getAdmix()+"");
+            System.out.println(search.getAdmix() + "");
             txtCement.setText(search.getCement() + "");
             txtCourseAgg.setText(search.getCourse_agg() + "");
             txtFineAgg.setText(search.getFine_agg() + "");
@@ -449,7 +470,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
-            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO((String) tblConcreteGrade.getValueAt(tblConcreteGrade.getSelectedRow(), 0), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), Double.valueOf(lblWaterCement.getText()));
+            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO(txtName.getText(), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), Double.valueOf(lblWaterCement.getText()));
             if (concreteController.isExist(concreteWorkDTO)) {
                 concreteController.update(concreteWorkDTO);
             } else {
@@ -459,6 +480,10 @@ public class MixDesignInfo extends javax.swing.JPanel {
             Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -470,6 +495,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
@@ -494,6 +520,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
     private javax.swing.JTextField txtCourseAgg;
     private javax.swing.JTextField txtFineAgg;
     private javax.swing.JTextField txtFlyAsh;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtSilicaFume;
     private javax.swing.JTextField txtWater;
     // End of variables declaration//GEN-END:variables

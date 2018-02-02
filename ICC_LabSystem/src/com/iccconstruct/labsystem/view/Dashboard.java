@@ -27,6 +27,7 @@ public class Dashboard extends javax.swing.JFrame {
     public static UserDTO user;
     public static LoginHistoryDTO history;
     public static ImageIcon image = new ImageIcon("src/com/iccconstruct/labsystem/resources/images/icc-logo.jpeg");
+
     public Dashboard() {
         try {
             initComponents();
@@ -243,9 +244,10 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             UserDTO dTO = new UserDTO(txtUsername.getText(), String.valueOf(psswrdPass.getPassword()), cmdUserType.getSelectedItem().toString());
             boolean exist = userController.isExist(dTO);
-            user = dTO;
+            user = userController.search(dTO.getUsername());
             if (exist) {
                 history = new LoginHistoryDTO(dTO);
+                System.out.println(history + "\t\tID"+ history.getLogID());
                 historyController.add(history);
                 if (dTO.getUserType().equals("Admin")) {
                     this.dispose();
@@ -325,16 +327,24 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void makeFirstAdmin() throws Exception {
         boolean add = false, add2 = false;
-        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
-        if (!userController.isExist(userDTO)) {
-            add = userController.add(userDTO);
-        }
-        add = true;
+        
         UserDTO maintain = new UserDTO(0, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
+            System.out.println("adding maintainance");
             add2 = userController.addMaintainance(maintain);
+        } else {
+            add2 = true;
         }
-        add2 = true;
+        
+        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
+        if (!userController.isExist(userDTO)) {
+            System.out.println("adding default user");
+            add = userController.add(userDTO);
+        } else {
+            add = true;
+        }
+
+        
 
         if (add && add2) {
             System.out.println("admin users made successfully");
@@ -343,8 +353,8 @@ public class Dashboard extends javax.swing.JFrame {
         }
 
     }
-    
-    public void setNewLogin(){
+
+    public void setNewLogin() {
         history = null;
         user = null;
     }
