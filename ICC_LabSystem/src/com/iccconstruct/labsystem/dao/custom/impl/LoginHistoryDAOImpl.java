@@ -35,6 +35,7 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
             fis.close();
             ois.close();
         }
+        
         return objs;
     }
 
@@ -63,12 +64,12 @@ public class LoginHistoryDAOImpl implements LoginHistoryDAO {
     @Override
     public boolean update(LoginHistoryDTO dto) throws Exception {
         System.out.println(dto.toString());
-        if (delete(dto.getLogID() + "")) {
-            System.out.println("delete successful");
+//        if (delete(dto.getLogID() + "")) {
+//            System.out.println("delete successful");
             return add(dto);
-        }
-        System.out.println("cudnt delete");
-        return false;
+//        }
+//        System.out.println("cudnt delete");
+//        return false;
     }
 
     @Override

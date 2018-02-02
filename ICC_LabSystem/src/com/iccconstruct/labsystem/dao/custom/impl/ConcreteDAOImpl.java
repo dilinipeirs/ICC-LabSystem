@@ -72,11 +72,11 @@ public class ConcreteDAOImpl implements ConcreteDAO {
 
     @Override
     public boolean update(ConcreteWorkDTO dto) throws Exception {
-        boolean delete = delete(dto.getConcreteGrade());
-        if (delete) {
+//        boolean delete = delete(dto.getConcreteGrade());
+//        if (delete) {
             return add(dto);
-        }
-        return delete;
+//        }
+//        return delete;
     }
 
     @Override

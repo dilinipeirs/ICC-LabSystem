@@ -77,11 +77,11 @@ public class UserDAOImpl implements UserDAO {
     
     @Override
     public boolean update(UserDTO dto) throws Exception {
-        if (delete(dto.getUserID() + "")) {
-            System.out.println("delete sucess");
+//        if (delete(dto.getUserID() + "")) {
+//            System.out.println("delete sucess");
             return add(dto);
-        }
-        return false;
+//        }
+//        return false;
     }
 
     @Override
