@@ -327,14 +327,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void makeFirstAdmin() throws Exception {
         boolean add = false, add2 = false;
-        UserDTO userDTO = new UserDTO(0, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
-        if (!userController.isExist(userDTO)) {
-            System.out.println("adding default user");
-            add = userController.add(userDTO);
-        } else {
-            add = true;
-        }
-
+        
         UserDTO maintain = new UserDTO(0, "Miss.", "---", "System", "Maintainance", "System Admin", "---", "---", "---", "maintain", "hopScotch123", "Admin");
         if (!userController.isExist(maintain)) {
             System.out.println("adding maintainance");
@@ -342,6 +335,16 @@ public class Dashboard extends javax.swing.JFrame {
         } else {
             add2 = true;
         }
+        
+        UserDTO userDTO = new UserDTO(1, "Mr.", "---", "admin", "admin", "System Admin", "---", "---", "---", "admin", "admin", "Admin");
+        if (!userController.isExist(userDTO)) {
+            System.out.println("adding default user");
+            add = userController.add(userDTO);
+        } else {
+            add = true;
+        }
+
+        
 
         if (add && add2) {
             System.out.println("admin users made successfully");
