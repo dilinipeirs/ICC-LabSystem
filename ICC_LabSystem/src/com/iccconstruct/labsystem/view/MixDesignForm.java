@@ -884,6 +884,9 @@ public class MixDesignForm extends javax.swing.JFrame {
             lblWater.setText(concreteWorkDTO.getWater() + "");
             txtMFineAgg.requestFocus();
             System.out.println("item state changed");
+            lblCement_1.setText(concreteWorkDTO.getCement1()+"");
+            lblCement_2.setText(concreteWorkDTO.getCement2()+"");
+            
         } catch (Exception ex) {
             Logger.getLogger(MixDesignForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1076,6 +1079,8 @@ public class MixDesignForm extends javax.swing.JFrame {
         lblAddMix2.setText(lblAddMix.getText());
         lblFlyAsh2.setText(lblFlyAsh.getText());
         lblSilicaFume2.setText(lblSilicaFume.getText());
+        lblCement2_1.setText(lblCement_1.getText());
+        lblCement2_2.setText(lblCement2_2.getText());
 
         //calculate values
         Double a = new Double(lblFineAgg.getText());

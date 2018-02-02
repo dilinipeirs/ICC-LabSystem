@@ -517,6 +517,8 @@ public class MixDesignInfo extends javax.swing.JPanel {
             txtWater.setText(search.getWater() + "");
             lblWaterCement.setText(search.getRatio() + "");
             System.out.println("finished setting details");
+            txtCement1.setText(search.getCement1() + "");
+            txtCement2.setText(search.getCement2() + "");
         } catch (Exception ex) {
             Logger.getLogger(MixDesignInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -524,7 +526,7 @@ public class MixDesignInfo extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
-            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO(txtName.getText(), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), Double.valueOf(lblWaterCement.getText()));
+            ConcreteWorkDTO concreteWorkDTO = new ConcreteWorkDTO(txtName.getText(), new Double(txtCement.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(txtAddMix.getText()), Double.valueOf(txtFineAgg.getText()), Double.valueOf(txtCourseAgg.getText()), Double.valueOf(txtFlyAsh.getText()), Double.valueOf(txtSilicaFume.getText()), Double.valueOf(lblWaterCement.getText()), Double.valueOf(txtCement1.getText()), Double.valueOf(txtCement2.getText()));
             if (concreteController.isExist(concreteWorkDTO)) {
                 concreteController.update(concreteWorkDTO);
             } else {
@@ -601,5 +603,17 @@ public class MixDesignInfo extends javax.swing.JPanel {
             Object[] rowData = {all1.getConcreteGrade()};
             dtm.addRow(rowData);
         }
+        txtAddMix.setText("0.0");
+        txtCement.setText("0.0");
+        txtCement1.setText("0.0");
+        txtCement2.setText("0.0");
+        txtCourseAgg.setText("0.0");
+        txtFineAgg.setText("0.0");
+        lblWaterCement.setText("0.0");
+        txtFlyAsh.setText("0.0");
+        txtName.setText("-");
+        txtSilicaFume.setText("0.0");
+        txtWater.setText("0.0");
+       
     }
 }

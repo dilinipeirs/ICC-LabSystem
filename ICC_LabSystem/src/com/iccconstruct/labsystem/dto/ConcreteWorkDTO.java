@@ -39,6 +39,8 @@ public class ConcreteWorkDTO extends SuperDTO {
         this.cement1=cement1;
         this.cement2=cement2;
     }
+    
+    
 
     /**
      * @return the concreteGrade
@@ -170,5 +172,33 @@ public class ConcreteWorkDTO extends SuperDTO {
 //    public String toString() {
 //        return getConcreteGrade() + " " + getCement();
 //    }
+
+    /**
+     * @return the cement1
+     */
+    public Double getCement1() {
+        return cement1;
+    }
+
+    /**
+     * @param cement1 the cement1 to set
+     */
+    public void setCement1(Double cement1) {
+        this.cement1 = cement1;
+    }
+
+    /**
+     * @return the cement2
+     */
+    public Double getCement2() {
+        return cement2;
+    }
+
+    /**
+     * @param cement2 the cement2 to set
+     */
+    public void setCement2(Double cement2) {
+        this.cement2 = cement2;
+    }
 
 }
