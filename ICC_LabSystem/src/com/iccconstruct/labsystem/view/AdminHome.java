@@ -89,7 +89,7 @@ public class AdminHome extends javax.swing.JFrame {
         btnManagePDF = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        btnLoginHis1 = new javax.swing.JButton();
+        btnMixDesignHistory = new javax.swing.JButton();
         btnMyMixdesigns = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,11 +166,11 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
-        btnLoginHis1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLoginHis1.setText("Adjusted Mix-Design History");
-        btnLoginHis1.addActionListener(new java.awt.event.ActionListener() {
+        btnMixDesignHistory.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnMixDesignHistory.setText("Adjusted Mix-Design History");
+        btnMixDesignHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginHis1ActionPerformed(evt);
+                btnMixDesignHistoryActionPerformed(evt);
             }
         });
 
@@ -191,7 +191,7 @@ public class AdminHome extends javax.swing.JFrame {
                             .addComponent(btnCreateMix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLoginHis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnDBbackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLoginHis1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnMixDesignHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jSeparator2)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,7 +210,7 @@ public class AdminHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoginHis, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLoginHis1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMixDesignHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -295,7 +295,7 @@ public class AdminHome extends javax.swing.JFrame {
         if (showConfirmDialog == 0) {
             try {
                 boolean update = historyController.update(Dashboard.history);
-                
+
                 if (update) {
                     AdminHome.this.dispose();
                     Dashboard d = new Dashboard();
@@ -314,9 +314,9 @@ public class AdminHome extends javax.swing.JFrame {
         navigate(3);
     }//GEN-LAST:event_btnManagePDFActionPerformed
 
-    private void btnLoginHis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginHis1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginHis1ActionPerformed
+    private void btnMixDesignHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMixDesignHistoryActionPerformed
+        new MixDesignHistory().setVisible(true);
+    }//GEN-LAST:event_btnMixDesignHistoryActionPerformed
 
     private void btnMyMixdesignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyMixdesignsActionPerformed
         new MyAdjustedMixDesigns().setVisible(true);
@@ -362,8 +362,8 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JButton btnDBbackup;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLoginHis;
-    private javax.swing.JButton btnLoginHis1;
     private javax.swing.JButton btnManagePDF;
+    private javax.swing.JButton btnMixDesignHistory;
     private javax.swing.JButton btnMixDesigns;
     private javax.swing.JButton btnMyMixdesigns;
     private javax.swing.JButton btnViewUsers;
@@ -399,6 +399,7 @@ public class AdminHome extends javax.swing.JFrame {
                 pnlContainer.add(new DatabaseBackup());
                 System.out.println("backup added");
                 break;
+
         }
 
         pnlContainer.updateUI();

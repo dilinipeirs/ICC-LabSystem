@@ -18,23 +18,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Dilini Peiris
  */
-public class MyAdjustedMixDesigns extends javax.swing.JFrame {
+public class MixDesignHistory extends javax.swing.JFrame {
 
     FormController formController;
 
-    public MyAdjustedMixDesigns() {
+    public MixDesignHistory() {
         try {
             initComponents();
             setLocationRelativeTo(null);
             setResizable(false);
             setIconImage(Dashboard.image.getImage());
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            setTitle("ICC - Lab System - My Mix Designs");
+            setTitle("ICC - Lab System - "
+                    + "Adjusted Mix Designs History");
             formController = (FormController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.FORM);
             setTable();
-            
         } catch (Exception ex) {
-            Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MixDesignHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -47,25 +47,22 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblWelcomeText = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetails = new javax.swing.JTable();
+        lblWelcomeText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblWelcomeText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblWelcomeText.setText("My Adjusted Mix Designs");
 
         tblDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Submitted Date-Time", "Concrete Grade", "Moisture Content Fine Aggregate", "Moisture Content Coarse Aggregate", "Cement (kg)", "Water (kg)", "Admixture (l)", "Fine aggregate (kg)", "Coarse Aggregate (kg)", "Fly-Ash (kg)", "Silica Fume (kg)", "Cement 1 (kg)", "Cement 2 (kg)", "Ratio (Water:Cement)"
+                "No.", "User", "Submitted Date-Time", "Concrete Grade", "Moisture Content Fine Aggregate", "Moisture Content Coarse Aggregate", "Cement (kg)", "Water (kg)", "Admixture (l)", "Fine aggregate (kg)", "Coarse Aggregate (kg)", "Fly-Ash (kg)", "Silica Fume (kg)", "Cement 1 (kg)", "Cement 2 (kg)", "Ratio (Water:Cement)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -75,26 +72,29 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
         tblDetails.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblDetails);
 
+        lblWelcomeText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblWelcomeText.setText("Adjusted Mix Design History");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(lblWelcomeText)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblWelcomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1049, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWelcomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblWelcomeText)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -118,25 +118,22 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MixDesignHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MixDesignHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MixDesignHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MixDesignHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                new MyAdjustedMixDesigns().setVisible(true);
+                new MixDesignHistory().setVisible(true);
             }
-        }
-        );
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,16 +143,15 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setTable() throws Exception {
-
+        int count = 0;
         ArrayList<FormDTO> all = formController.getAll();
         DefaultTableModel dtm = (DefaultTableModel) tblDetails.getModel();
         dtm.setRowCount(0);
         for (FormDTO all1 : all) {
-            if (all1.getU().getUserID() == Dashboard.user.getUserID()) {
-                String rowData[] = {all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
-                    all1.getConcreteWorkDTO().getFly_ash().toString(), all1.getConcreteWorkDTO().getSilica_fume().toString(), all1.getConcreteWorkDTO().getCement1().toString(), all1.getConcreteWorkDTO().getCement2().toString(), all1.getConcreteWorkDTO().getRatio().toString()};
-                dtm.addRow(rowData);
-            }
+
+            String rowData[] = {count++ + "", all1.getU().getFname(), all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
+                all1.getConcreteWorkDTO().getFly_ash().toString(), all1.getConcreteWorkDTO().getSilica_fume().toString(), all1.getConcreteWorkDTO().getCement1().toString(), all1.getConcreteWorkDTO().getCement2().toString(), all1.getConcreteWorkDTO().getRatio().toString()};
+            dtm.addRow(rowData);
 
         }
     }
