@@ -1134,6 +1134,6 @@ public class MixDesignForm extends javax.swing.JFrame {
         lblCement2_2.setText("0.0");
         lblCement_1.setText("0.0");
         lblCement_2.setText("0.0");
-        
+        txtWater.setText("0.0");
     }
 }

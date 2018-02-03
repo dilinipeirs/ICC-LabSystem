@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -143,16 +147,30 @@ public class MixDesignHistory extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setTable() throws Exception {
-        int count = 0;
+        
         ArrayList<FormDTO> all = formController.getAll();
         DefaultTableModel dtm = (DefaultTableModel) tblDetails.getModel();
         dtm.setRowCount(0);
         for (FormDTO all1 : all) {
 
-            String rowData[] = {count++ + "", all1.getU().getFname(), all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
+            String rowData[] = {all1.getFormID()+"", all1.getU().getFname(), all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
                 all1.getConcreteWorkDTO().getFly_ash().toString(), all1.getConcreteWorkDTO().getSilica_fume().toString(), all1.getConcreteWorkDTO().getCement1().toString(), all1.getConcreteWorkDTO().getCement2().toString(), all1.getConcreteWorkDTO().getRatio().toString()};
             dtm.addRow(rowData);
 
         }
+        
+        sortData();
+    }
+    
+     private void sortData() {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tblDetails.getModel());
+        tblDetails.setRowSorter(sorter);
+        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+        int columnIndexToSort = 0;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
     }
 }
