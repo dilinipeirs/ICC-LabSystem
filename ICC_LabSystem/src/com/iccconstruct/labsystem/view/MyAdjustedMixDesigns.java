@@ -8,6 +8,8 @@ package com.iccconstruct.labsystem.view;
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.FormController;
 import com.iccconstruct.labsystem.dto.FormDTO;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +34,7 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
             setTitle("ICC - Lab System - My Mix Designs");
             formController = (FormController) ControllerFactory.getInstance().getController(ControllerFactory.ControllerTypes.FORM);
             setTable();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(MyAdjustedMixDesigns.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,7 +154,9 @@ public class MyAdjustedMixDesigns extends javax.swing.JFrame {
         dtm.setRowCount(0);
         for (FormDTO all1 : all) {
             if (all1.getU().getUserID() == Dashboard.user.getUserID()) {
-                String rowData[] = {all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
+                DateTimeFormatter ofLocalizedDateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+                String format = all1.getCreateDateTime().format(ofLocalizedDateTime);
+                String rowData[] = {format, all1.getConcreteWorkDTO().getConcreteGrade(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
                     all1.getConcreteWorkDTO().getFly_ash().toString(), all1.getConcreteWorkDTO().getSilica_fume().toString(), all1.getConcreteWorkDTO().getCement1().toString(), all1.getConcreteWorkDTO().getCement2().toString(), all1.getConcreteWorkDTO().getRatio().toString()};
                 dtm.addRow(rowData);
             }

@@ -8,6 +8,8 @@ package com.iccconstruct.labsystem.view;
 import com.iccconstruct.labsystem.controller.ControllerFactory;
 import com.iccconstruct.labsystem.controller.custom.FormController;
 import com.iccconstruct.labsystem.dto.FormDTO;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,8 +154,9 @@ public class MixDesignHistory extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) tblDetails.getModel();
         dtm.setRowCount(0);
         for (FormDTO all1 : all) {
-
-            String rowData[] = {all1.getFormID()+"", all1.getU().getFname(), all1.getCreateDateTime().toString(), all1.getConcreteWorkDTO().getConcreteGrade().toString(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
+            DateTimeFormatter ofLocalizedDateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+            String format = all1.getCreateDateTime().format(ofLocalizedDateTime);
+            String rowData[] = {all1.getFormID()+"", all1.getU().getFname(), format, all1.getConcreteWorkDTO().getConcreteGrade(), all1.getMoisture_fine().toString(), all1.getMoisture_course().toString(), all1.getConcreteWorkDTO().getCement().toString(), all1.getConcreteWorkDTO().getWater().toString(), all1.getConcreteWorkDTO().getAdmix().toString(), all1.getConcreteWorkDTO().getFine_agg().toString(), all1.getConcreteWorkDTO().getCourse_agg().toString(),
                 all1.getConcreteWorkDTO().getFly_ash().toString(), all1.getConcreteWorkDTO().getSilica_fume().toString(), all1.getConcreteWorkDTO().getCement1().toString(), all1.getConcreteWorkDTO().getCement2().toString(), all1.getConcreteWorkDTO().getRatio().toString()};
             dtm.addRow(rowData);
 
