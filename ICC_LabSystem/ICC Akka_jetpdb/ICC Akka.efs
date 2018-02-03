@@ -1,0 +1,12 @@
+1
+"."
+1
+  DIR "dist" "dist" HIDDEN
+  2
+    DIR "lib" "dist\lib" HIDDEN
+    4
+      FILE "icepdf-viewer.jar" "F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\tmpres\icepdf-viewer__3.jar" HIDDEN
+      FILE "commons-io-2.6.jar" "F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\tmpres\commons-io-2.6__4.jar" HIDDEN
+      FILE "icepdf-pro.jar" "F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\tmpres\icepdf-pro__2.jar" HIDDEN
+      FILE "jide-oss-3.6.18.jar" "F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\tmpres\jide-oss-3.6.18__1.jar" HIDDEN
+    FILE "ICC_LabSystem.jar" "F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\tmpres\ICC_LabSystem__0.jar" HIDDEN

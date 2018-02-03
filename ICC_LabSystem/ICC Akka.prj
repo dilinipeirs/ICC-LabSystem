@@ -1,0 +1,66 @@
+%%Excelsior JET v14.0 project file
+
+-jpiiproject=F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka.jpn
+
+-compilewithfixedheap-
+-genstackalloc+
+-genstacktrace-
+-global-
+-gui-
+-ignoreclassduplication+
+-ignorememberabsence+
+-inline+
+-jetcpenablemanualsettings+
+-multiapp-
+-pgo+
+-splashgetfrommanifest-
+
+-apptype=Plain
+-classabsence=HANDLE
+-compilerheap=1744830464
+-inlinelimit=100
+-inlinetolimit=1000
+-jetcplastpage:=PageCompile
+-jetrt=Desktop
+-jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace
+-jprofile=./ICC Akka.jprof
+-main=com/iccconstruct/labsystem/main/ICC_LabSystem
+-outputdir=.
+-outputname=ICC Akka
+-saprofmode=JETCPONLY
+-saproftimeout=20
+-splash=C:/Users/Dilini Peiris/Desktop/logos.jpg
+-stacklimit=900000
+-startupprofile=./ICC Akka.startup
+
+
+
+
+!classpathentry ./dist/ICC_LabSystem.jar
+  -pack=noncompiled
+  -protect=all
+  -optimize=all
+!end
+!classpathentry ./dist/lib/jide-oss-3.6.18.jar
+  -pack=noncompiled
+  -protect=nomatter
+  -optimize=all
+!end
+!classpathentry ./dist/lib/icepdf-pro.jar
+  -pack=noncompiled
+  -protect=nomatter
+  -optimize=all
+!end
+!classpathentry ./dist/lib/icepdf-viewer.jar
+  -pack=noncompiled
+  -protect=nomatter
+  -optimize=all
+!end
+!classpathentry ./dist/lib/commons-io-2.6.jar
+  -pack=noncompiled
+  -protect=nomatter
+  -optimize=all
+!end
+
+!module ./ICC Akka.usg
+

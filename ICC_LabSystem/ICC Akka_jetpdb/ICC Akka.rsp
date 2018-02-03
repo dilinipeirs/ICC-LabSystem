@@ -1,0 +1,45 @@
+
+-arch=amd64
+-PIC
+-jetcomponent=14.00
+-jetedition=Evaluation
+-vcode=8144
+-sys=C
+-nosmart
+-zimer=0
+-stack=900000
+-LargeAddressAware
+-config=VMProperty:-Djet.gc.heaplimit:0 -Djet.stack.trace
+-config=ClassPath:*{exe.dir}\dist\ICC_LabSystem.jar;*{exe.dir}\dist\lib\jide-oss-3.6.18.jar;*{exe.dir}\dist\lib\icepdf-pro.jar;*{exe.dir}\dist\lib\icepdf-viewer.jar;*{exe.dir}\dist\lib\commons-io-2.6.jar
+-config=JREHome:C:\jet14.0-eval-amd64\bin\..\profile1.8.0_144\jre
+-config=JETProfile:8144
+-config=JETProfileName:1.8.0_144
+-config=RuntimeKind:DESKTOP
+-EmbeddedFileSys=F:/Playground/Projects/ICC - Lab/ICC-LabSystem/ICC_LabSystem/ICC Akka_jetpdb/ICC Akka.efs
+-config=MainClass:com/iccconstruct/labsystem/main/ICC_LabSystem
+-config=VersionInfo:jet-1400-release (eval, en)
+-config=CompatibilityString:Java SE version: 1.8.0_144; JET update level: 0; CPU architecture: amd64
+-name=ICC Akka.exe
+
+-entry=ExeEntryPoint
+
+
+-config=HaveSplash:1
+-config=SplashCloseOnTitle:
+-config=SplashCloseOnAWTWindow:1
+-LinkFileAsRData=LINK_SplashPicture:C:/Users/Dilini Peiris/Desktop/logos.jpg
+
+
+C:\jet14.0-eval-amd64\lib\x86\startup-exe-splash.zip
+
+-GenExceptionInfo=JR_SystemExceptionHandler
+-config=PackagingOptions:dlls=net;t2k;nio;awt;fontmanager;jpeg component_microversions=BC-0
+-ReadLinkInfo=F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\reorder.li
+F:\Playground\Projects\ICC - Lab\ICC-LabSystem\ICC_LabSystem\ICC Akka_jetpdb\obj.zip
+-Config=RTComponent:XKRN14008144.dll
+C:\jet14.0-eval-amd64\lib\x86\startup-rtlink.zip
+C:\jet14.0-eval-amd64\lib\x86\import32.lib
+C:\jet14.0-eval-amd64\lib\x86\app.res
+-StrictLinkToDLL
+
+

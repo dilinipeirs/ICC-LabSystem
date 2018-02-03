@@ -851,6 +851,7 @@ public class MixDesignForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(MixDesignForm.this, "Please enter Moisture Content Fine Aggregate and Moisture Content Course Aggregate to continue", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                concreteWorkDTO = new ConcreteWorkDTO(cmbConcreteGrade.getSelectedItem().toString(), Double.valueOf(lblCement2.getText()), Double.valueOf(txtWater.getText()), Double.valueOf(lblAddMix2.getText()), Double.valueOf(lblFineAgg2.getText()), Double.valueOf(lblCourseAgg2.getText()), Double.valueOf(lblFlyAsh2.getText()), Double.valueOf(lblSilicaFume2.getText()), Double.valueOf(lblRatio2.getText()), Double.valueOf(lblCement2_1.getText()), Double.valueOf(lblCement2_2.getText()));
                 FormDTO dTO = new FormDTO(Dashboard.user, LocalDateTime.now(), concreteWorkDTO, new Double(txtMFineAgg.getText()), new Double(txtMCourseAgg.getText()), new Double(txtWater.getText()), new Double(lblRatio2.getText()));
                 boolean add = formController.add(dTO);
                 if (!add) {
