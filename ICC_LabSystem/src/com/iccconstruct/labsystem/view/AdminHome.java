@@ -45,8 +45,14 @@ public class AdminHome extends javax.swing.JFrame {
                         JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1]);
                 System.out.println(confirm);
                 if (confirm == 0) {
-                    System.exit(0);
+                    try {
+                        boolean update = historyController.update(Dashboard.history);
+                        System.exit(0);
+                    } catch (Exception ex) {
+                        Logger.getLogger(AdminHome.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else if (confirm == 2) {
+                    
                     try {
                         System.out.println(Dashboard.history);
                         boolean update = historyController.update(Dashboard.history);
